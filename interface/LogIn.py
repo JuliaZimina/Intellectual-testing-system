@@ -5,6 +5,8 @@ from interface.Windows.logInWindow import *
 from interface.registrationUI import *
 from PyQt5 import QtWidgets
 
+from interface.userUI import *
+
 '''
 def clickable(widget):
     class Filter(QObject):
@@ -52,6 +54,10 @@ class LogInWin(QtWidgets.QMainWindow):
         password = self.ui.passwordLine.text()
         try:
             user = logIn(login, password)
+            self.close()
+            self.Open = UserWin()
+            self.Open.show()
+
             # открыть следующее окно
         except Exception as e:
             self.ui.errorLabel.setText(str(e))
