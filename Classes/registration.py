@@ -45,25 +45,25 @@ def checkNames(name):
 def registration(login,password,name,surname,father_name,date_of_birth,group,secret_question,secret_answer,email,tel,photo=""):
 
     if not checkLogin(login):
-        raise login_exception("Such name already exists")
+        raise Exception("Such name already exists")
         
 
     if not checkPassword(password):
-         raise password_exception("Your password should be larger than 8")
+         raise Exception("Your password should be larger than 8")
 
 
     if not checkNames(name):
-        raise name_exception("This field is requried")
+        raise Exception("This field is requried")
     
     if not checkNames(surname):
-        raise name_exception("This field is requried")     
+        raise Exception("This field is requried")     
 
     if not checkNames(answer):
-        raise name_exception("This field is requried")
+        raise Exception("This field is requried")
     
 
     if not checkNames(mail):
-        raise name_exception("This field is requried")
+        raise Exception("This field is requried")
     
     users[login] = {'password': password, 'status': 'regular_user', 'ban' : False, 'name' :  name, 'date_of_birth' : date_of_birth, 'tel':tel, 
     'father_name' : father_name, 'surname' : surname, 'group' : group, 'secret_question' : secret_question, 'secret_answer' : answer, 'email' : email, 'photo' : photo}
@@ -72,14 +72,14 @@ def registration(login,password,name,surname,father_name,date_of_birth,group,sec
     sendMessage(email)
     
     
-    return templateUser()
+    return templateUser('...')
 
     
        
 def reestablishPassword_step1(login, answer):
     
     if answer != users[login]['secret_answer']:
-        raise answer_exception("secret answer is wrong")
+        raise Exception("secret answer is wrong")
     return True
   
 
@@ -87,7 +87,7 @@ def reestablishPassword_step1(login, answer):
 def reestablishPassword_step2(login, new_password):
     
     if new_password == users[login][password]:
-        raise password_exception("New password shouldn't be equal to old one")
+        raise Exception("New password shouldn't be equal to old one")
     
     return True
  
@@ -97,10 +97,10 @@ def logIn(login, password): # вход
 
     
     if login not in user:
-        raise login_exception("There are no such user")
+        raise Exception("There are no such user")
     
     if users[login]['password'] != password:
-        raise password_exception("Wrong password")
+        raise Exception("Wrong password")
 
     return True
 
@@ -108,10 +108,10 @@ def logIn(login, password): # вход
 
 def tmpLogIn(login, old_password, new_password): #временный вход
     if login not in users:
-       raise login_exception("There are no such user")
+       raise Exception("There are no such user")
     
     if users[login]['password'] != old_password:
-        raise password_exception("Wrong password")
+        raise Exception("Wrong password")
         
     users[login]['password'] = password
        
