@@ -2,10 +2,9 @@ from emal.massage import EmalMassage
 import smtplib
 
 from dataProcessing import users
-
+from secretQuestions import secret_questions
 EMAIL = "zeiwjfew@yandex.ru"
 PASSWORD = "ooP123"
-
 
 def checkLogin(login):
     
@@ -64,7 +63,7 @@ def registration(login,password,name,surname,father_name,date_of_birth,group,sec
          raise group_exception("There are only 2 types of group")
     
     
-    if secret_question is not in secret_questions:
+    if secret_question not in secret_questions:
         raise question_exception("There are no such question")
         
 
@@ -75,8 +74,8 @@ def registration(login,password,name,surname,father_name,date_of_birth,group,sec
     if not checkNames(mail):
         raise name_exception("This field is requried")
     
-    users[login] = {'password': password, 'status': 'regular_user', 'ban' = False, 'name' =  name, 'date_of_birth' = date_of_birth, 'tel':tel, 'father_name' = father_name,
-            'surname' = surname, 'group' = group, 'secret_question' = secret_question, 'secret_answer' = answer, 'email' = email, 'photo' = photo}
+    users[login] = {'password': password, 'status': 'regular_user', 'ban' : False, 'name' :  name, 'date_of_birth' : date_of_birth, 'tel':tel, 
+    'father_name' : father_name, 'surname' : surname, 'group' : group, 'secret_question' : secret_question, 'secret_answer' : answer, 'email' : email, 'photo' : photo}
 
     
     sendMessage(email)
@@ -96,8 +95,9 @@ def reestablishPassword_step1(login, answer):
   
 def reestablishPassword_step2(login, new_password):
     
-     if new_password == users[login][password]:
-         raise password_exception("New password shouldn't be equal to old one")
+    if new_password == users[login][password]:
+        raise password_exception("New password shouldn't be equal to old one")
+    
     return True
  
  
