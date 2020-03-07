@@ -56,16 +56,7 @@ def registration(login,password,name,surname,father_name,date_of_birth,group,sec
         raise name_exception("This field is requried")
     
     if not checkNames(surname):
-        raise name_exception("This field is requried")
-    
-    
-    if (group != '18би1') & (group != '18би2'):
-         raise group_exception("There are only 2 types of group")
-    
-    
-    if secret_question not in secret_questions:
-        raise question_exception("There are no such question")
-        
+        raise name_exception("This field is requried")     
 
     if not checkNames(answer):
         raise name_exception("This field is requried")
