@@ -53,7 +53,7 @@ class LogInWin(QtWidgets.QMainWindow):
         login = self.ui.loginLine.text()
         password = self.ui.passwordLine.text()
         try:
-            user = logIn(login, password)
+            #user = logIn(login, password)
             self.close()
             self.Open = UserWin()
             self.Open.show()

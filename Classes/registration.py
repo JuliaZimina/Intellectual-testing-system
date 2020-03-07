@@ -94,7 +94,6 @@ def reestablishPassword_step1(login, answer):
 
   
 def reestablishPassword_step2(login, new_password):
-    
     if new_password == users[login][password]:
         raise password_exception("New password shouldn't be equal to old one")
     

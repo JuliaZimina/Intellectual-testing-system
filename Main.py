@@ -1,6 +1,6 @@
 import sys
 
-from interface.LogIn import LogInWin
+from interface.LogIn import *
 from PyQt5 import QtWidgets
 
 
