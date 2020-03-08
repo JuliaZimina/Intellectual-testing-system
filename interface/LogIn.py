@@ -55,7 +55,7 @@ class LogInWin(QtWidgets.QMainWindow):
         try:
             #user = logIn(login, password)
             self.close()
-            self.Open = UserWin()
+            self.Open = UserWin("user")
             self.Open.show()
 
             # открыть следующее окно

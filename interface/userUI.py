@@ -1,15 +1,72 @@
+from dataProcessing import *
 from interface.LogIn import *
-from interface.Windows.registrationWindow import *
 from interface.Windows.userWindow import *
-from Classes.registration import *
 
 from PyQt5 import QtWidgets
+
+from interface.questionWindowUI import QuestionWin
 
 
 class UserWin(QtWidgets.QMainWindow, Ui_UserWindow):
 
-    def __init__(self, parent=None):
+    def __init__(self, current_user, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
+        self.user = current_user
         self.setupUi(self)
-        # self.setFixedSize(500, 500)
-        #self.registerButton.clicked.connect(self.registrationUI)
+        self.testing()
+        #self.userInformation()
+        #self.statistics()
+        self.setFixedSize(650, 500)
+
+    def testing(self):
+        self.questionThemeComboBox.addItems(groups_of_questions)
+        self.themeTestButton.clicked.connect(self.openThemeQuestionWindow)
+        self.genetalTestButton.clicked.connect(self.openGeneralQuestionWindow)
+
+    def userInformation(self):
+        self.nameLine.setText(self.user.getName())
+        self.surnameLine.setText(self.user.getSurname())
+        self.faternityLine.setText(self.user.getFatherName())
+        date = self.user.getDateOfBirth()
+        self.dateOfBirth.setDate(QtCore.QDate(date.day, date.month, date.year))
+        question = [self.user.getSecretQuestion()]
+        questions = question + [x for x in secret_questions if x != question[0]]
+        self.question.addItems(question)
+        self.answerLine.setText(self.user.getSecretAnswer())
+        self.emailLine.setText(self.user.getEmail())
+        self.phoneLine.setText(self.user.getPhoneNumber())
+        self.accceptChangesButton.clicked.connect(self.makeChanges)
+        self.deleteUserButton.clicked.connect(self.delteUser)
+
+    def statistics(self):
+        self.statisticsLabel.setText(self.user.getStastics())
+
+    def openQuestionWindow(self, theme):
+        question = QuestionWin()
+        question.show()
+
+    def delteUser(self):
+        del self.user
+        self.close()
+
+    def makeChanges(self):
+        try:
+            self.user.setName(self.nameLine.text())
+            self.user.setSurname(self.surnameLine.text())
+            self.user.setFatherName(self.faternityLine.text())
+            self.user.setDateOfBirth(self.dateOfBirth.text())
+            self.user.setGroup(self.group.currentText())
+            self.user.setSecretQuestion(self.question.currentText())
+            self.user.setSecretAnswer(self.answerLine.text())
+            self.user.setEmail(self.emailLine.text())
+            self.user.setPhoneNumber(self.phoneLine.text())
+        except Exception as e:
+            self.errorChangesLabel.setText(str(e))
+
+    def openThemeQuestionWindow(self):
+        question = QuestionWin(str(self.questionThemeComboBox.currentText()))
+        question.show()
+
+    def openGeneralQuestionWindow(self):
+        question = QuestionWin("general")
+        question.show()

@@ -1,8 +1,8 @@
-from emal.massage import EmalMassage
+#from emal.massage import EmalMassage
 import smtplib
 
 from dataProcessing import users
-from secretQuestions import secret_questions
+#from secretQuestions import secret_questions
 EMAIL = "zeiwjfew@yandex.ru"
 PASSWORD = "ooP123"
 

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>UI_UserWindow</class>
- <widget class="QMainWindow" name="UI_UserWindow">
+ <class>AdminWindow</class>
+ <widget class="QMainWindow" name="AdminWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>411</width>
-    <height>354</height>
+    <height>330</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>3</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -36,24 +36,24 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QComboBox" name="comboBox"/>
+         <widget class="QComboBox" name="qustionThemeComboBox"/>
         </item>
         <item row="1" column="1">
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="themeTestButton">
           <property name="text">
            <string>Пройти тематический тест</string>
           </property>
          </widget>
         </item>
         <item row="5" column="0" colspan="2">
-         <widget class="QLabel" name="label_2">
+         <widget class="QLabel" name="errorTestLabel">
           <property name="text">
            <string/>
           </property>
          </widget>
         </item>
         <item row="3" column="0" colspan="2">
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="genetalTestButton">
           <property name="text">
            <string>Пройти итоговый тест</string>
           </property>
@@ -82,9 +82,9 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
             <item>
-             <widget class="QLabel" name="label_5">
+             <widget class="QLabel" name="userListLabel">
               <property name="text">
-               <string>TextLabel</string>
+               <string/>
               </property>
              </widget>
             </item>
@@ -93,21 +93,21 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_8">
+         <widget class="QPushButton" name="changeStatusButton">
           <property name="text">
            <string>Изменить статус</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_7">
+         <widget class="QPushButton" name="BlockButton">
           <property name="text">
            <string>Заблокировать</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_6">
+         <widget class="QPushButton" name="changePasswordButton">
           <property name="text">
            <string>Запросы на смену пароля</string>
           </property>
@@ -129,9 +129,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
+             <y>-148</y>
              <width>354</width>
-             <height>414</height>
+             <height>440</height>
             </rect>
            </property>
            <layout class="QFormLayout" name="formLayout_2">
@@ -170,7 +170,7 @@
              </widget>
             </item>
             <item row="3" column="1">
-             <widget class="QLineEdit" name="lineEdit_4"/>
+             <widget class="QLineEdit" name="surnameLine"/>
             </item>
             <item row="4" column="0">
              <widget class="QLabel" name="label_13">
@@ -203,12 +203,7 @@
              <widget class="QComboBox" name="group">
               <item>
                <property name="text">
-                <string>18БИ1</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>18БИ2</string>
+                <string>None</string>
                </property>
               </item>
              </widget>
@@ -270,23 +265,33 @@
              <widget class="QLineEdit" name="phoneLine"/>
             </item>
             <item row="11" column="1">
-             <widget class="QPushButton" name="pushButton_3">
+             <widget class="QPushButton" name="acceptChangesButton">
               <property name="text">
                <string>Подтвердить изменения</string>
               </property>
              </widget>
             </item>
-            <item row="13" column="0" colspan="2">
-             <widget class="QPushButton" name="pushButton_4">
+            <item row="15" column="0" colspan="2">
+             <widget class="QPushButton" name="DeleteUser">
               <property name="text">
                <string>Удалить пользователя</string>
               </property>
              </widget>
             </item>
-            <item row="14" column="0" colspan="2">
-             <widget class="QLabel" name="errorLabel">
+            <item row="16" column="0" colspan="2">
+             <widget class="QLabel" name="errorChangesLabel">
               <property name="text">
                <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="14" column="0" colspan="2">
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>После внесения изменений, потребуется перезайти</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
@@ -317,14 +322,14 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
-             <widget class="QLabel" name="label_4">
+             <widget class="QLabel" name="statisticLabel">
               <property name="text">
                <string>TextLabel</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_9">
+             <widget class="QPushButton" name="viewGraphicsButton">
               <property name="text">
                <string>Отобразить графики</string>
               </property>
@@ -338,8 +343,69 @@
       </widget>
       <widget class="QWidget" name="tab_5">
        <attribute name="title">
-        <string>Страница</string>
+        <string>Вопросная база</string>
        </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <item>
+         <widget class="QLabel" name="label_15">
+          <property name="text">
+           <string>Список вопросов:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="questionsComboBox"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="editQuestionButton">
+          <property name="text">
+           <string>Редактировать вопрос</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QFormLayout" name="formLayout_3">
+          <property name="labelAlignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+          </property>
+          <item row="1" column="0">
+           <widget class="QPushButton" name="hideQuestionButton">
+            <property name="text">
+             <string>Скрыть вопрос</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="hideGroupOfQuestionsButton">
+            <property name="text">
+             <string>Скрыть группу Вопросов</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="deleteGroupOfQuestionsButton">
+            <property name="text">
+             <string>Удалить группу вопросов</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QPushButton" name="deleteQuestionButton">
+            <property name="text">
+             <string>Удалить вопрос</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="AddQuestionButton">
+          <property name="text">
+           <string>Добавить вопрос</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
