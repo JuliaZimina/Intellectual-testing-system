@@ -8,3 +8,6 @@ class Test:
 
     def sendAnswer(self, answer):
         pass
+
+    def getResult(self):
+        pass

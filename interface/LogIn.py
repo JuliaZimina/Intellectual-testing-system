@@ -2,7 +2,9 @@
 
 from interface.Windows.logInWindow import *
 #from Classes.registration import *
+from interface.adminUI import *
 from interface.registrationUI import *
+
 from PyQt5 import QtWidgets
 
 from interface.userUI import *
@@ -55,7 +57,8 @@ class LogInWin(QtWidgets.QMainWindow):
         try:
             #user = logIn(login, password)
             self.close()
-            self.Open = UserWin("user")
+            #self.Open = UserWin("user")
+            self.Open = AdminWin()
             self.Open.show()
 
             # открыть следующее окно
