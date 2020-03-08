@@ -1,37 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>questionWindow</class>
- <widget class="QDialog" name="questionWindow">
+ <widget class="QMainWindow" name="questionWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>366</width>
-    <height>320</height>
+    <width>360</width>
+    <height>330</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>Dialog</string>
+  <property name="focusPolicy">
+   <enum>Qt::StrongFocus</enum>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QLabel" name="questionLabel">
-     <property name="text">
-      <string>Вопрос</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="answerlineEdit"/>
-   </item>
-   <item>
-    <widget class="QPushButton" name="answerButton">
-     <property name="text">
-      <string>Ответить</string>
-     </property>
-    </widget>
-   </item>
-  </layout>
+  <property name="windowTitle">
+   <string>Вопрос</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="questionLabel">
+      <property name="text">
+       <string>Вопрос</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="answerlineEdit"/>
+    </item>
+    <item>
+     <widget class="QPushButton" name="answerButton">
+      <property name="text">
+       <string>Ответить</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
  </widget>
  <resources/>
  <connections/>

@@ -64,9 +64,9 @@ class UserWin(QtWidgets.QMainWindow, Ui_UserWindow):
             self.errorChangesLabel.setText(str(e))
 
     def openThemeQuestionWindow(self):
-        question = QuestionWin(str(self.questionThemeComboBox.currentText()))
-        question.show()
+        self.Open = QuestionWin(str(self.questionThemeComboBox.currentText()))
+        self.Open.show()
 
     def openGeneralQuestionWindow(self):
-        question = QuestionWin("general")
-        question.show()
+        self.Open = QuestionWin("general")
+        self.Open.show()
