@@ -13,16 +13,15 @@ class Test:
 #генерирует следующий вопрос
     def getNextQuestion(self):
         data = read_tests("tests.sys")
-        if self.field != "general":
-            for key in data:
+        for key in data:
+            if self.field != "general":
                 if key == self.field:
                     for i in self.ex_quest:
                         if i == data[key]:
                             continue
                     self.ex_quest.append(data[key])
                     return data[key]
-        else:
-            for key in data:
+            else:
                 for i in self.ex_quest:
                     if i == data[key]:
                         continue
