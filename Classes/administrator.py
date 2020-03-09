@@ -34,7 +34,7 @@ class Administrator(Analyst):
     def edit_question(question):
 	dictionary['question'] = question
 	return dictionary
-    def roles():
+    def roles(user):
 	user = analyst
 	user = user
     def return_access():
