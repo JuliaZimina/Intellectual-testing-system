@@ -37,7 +37,8 @@ class Administrator(Analyst):
 	return dictionary
 	#user-login,new_role="user"/"analyst"
     def roles(user,new_role):
-	user = analyst
-	user = user
+	'''user = analyst
+	user = user'''
+	user-login,new_role="analyst"
     def return_access(user):
 	
