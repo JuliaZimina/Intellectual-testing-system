@@ -121,8 +121,7 @@ def read_group_statistic(file):
 # login;password;status;ban;name,surname;father_name;date_of_birth;group;secret_question;secret_answer;email;tel
 users = read_users_info('Data/UsersInfo/users.sys')
 print(users)
-
-
+recovery_requests=read_users_info('Data/UsersInfo/passwordRequests.sys')
 # группа;вопрос;время;правильный ответ;ответ;ответ
 tests = read_tests('Data/Content/tests.sys')
 print(tests)

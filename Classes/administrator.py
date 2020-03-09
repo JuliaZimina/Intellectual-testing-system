@@ -5,7 +5,8 @@ from Classes.analyst import *
 class Administrator(Analyst):
     def __init__(self):
         pass
-    def block_user(user):
+	#добавила поле с причиной, user-это будет не объект, а логин этого юзера
+    def block_user(user,reason):
 	ban = true
 	'''smsapi = ssms_su.smsapi(user)
 	smsapi.push_msg("Hello, you are in block!", user)'''
@@ -34,7 +35,8 @@ class Administrator(Analyst):
     def edit_question(question):
 	dictionary['question'] = question
 	return dictionary
-    def roles(user):
+	#user-login,new_role="user"/"analyst"
+    def roles(user,new_role):
 	user = analyst
 	user = user
     def return_access(user):
