@@ -3,28 +3,29 @@ from dataProcessing import *
 class Test:
     """Test model"""
 
-    def __init__(self, field, number_of_quest, type, sum_right):
+    def __init__(self, field, type, sum_right):
         self.field = field
-        self.number_of_quest = number_of_quest
         self.type = type
         self.sum_right = sum_right
+        self.ex_quest = []
+        self.number_of_quest = 5
         self.end_of_test = False
         pass
 
 #генерирует следующий вопрос
     def getNextQuestion(self):
-
-        pass
+        data = read_tests("tests.sys")
+        for key in data:
+            if key == self.field:
+                for i in self.ex_quest:
+                    if i == data[key]:
+                        continue
+                self.ex_quest.append(data[key])
+                return data[key]
 
 #пользователь отправляет свой ответ
-    def sendAnswer(self, answer):
+    def sendAnswer(self, answer, time):
         pass
 
     def getResult(self):
         pass
-
-    def launch(self):
-        print("Вы выбрали тест по теме: " + self.field)
-
-test = Test("История")
-test.launch()

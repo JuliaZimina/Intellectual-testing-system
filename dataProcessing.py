@@ -24,6 +24,8 @@ def read_tests(file):
         return data
     else:
         return data
+
+
 def printIncorrectAnswers(group,question):
     answers=[tests[group][question]["ответ"][i] for i in range(1,len(tests[group][question]["ответ"]))]
     return ";".join(answers)
