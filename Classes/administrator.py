@@ -27,9 +27,9 @@ class Administrator(Analyst):
 	for group in dictionary:
     		print "%s : %s" % (group, dictionary[group])
     def add_question(question):
-	dictinary['group'] = question
-	time = time
-	dictionary['varianti otveta'] = varianti
+	dictinary[group] = question
+	dictionary[time] = time
+	dictionary[varianti otveta] = varianti
 	return dictinary
     def edit_question(question):
 	dictionary['question'] = question
