@@ -1,10 +1,4 @@
 from dataProcessing import *
-
-def printQuestion(file):
-    lines = [line.strip() for line in file]
-    for i in range(5):
-        print(lines[i])
-
 class Test:
     """Test model"""
 
@@ -27,10 +21,6 @@ class Test:
 
     def launch(self):
         print("Вы выбрали тест по теме: " + self.field)
-        if (self.field == "История"):
-            f1 = open('tests.sys', 'r')
-            printQuestion(f1)
-            a = input()
 
 test = Test("История России")
 test.launch()
