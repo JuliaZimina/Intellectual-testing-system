@@ -3,9 +3,8 @@ from dataProcessing import *
 class Test:
     """Test model"""
 
-    def __init__(self, field, type, sum_right):
+    def __init__(self, field, sum_right):
         self.field = field
-        self.type = type
         self.sum_right = sum_right
         self.ex_quest = []
         self.number_of_quest = 5
@@ -14,13 +13,22 @@ class Test:
 #генерирует следующий вопрос
     def getNextQuestion(self):
         data = read_tests("tests.sys")
-        for key in data:
-            if key == self.field:
+        if self.field != "general":
+            for key in data:
+                if key == self.field:
+                    for i in self.ex_quest:
+                        if i == data[key]:
+                            continue
+                    self.ex_quest.append(data[key])
+                    return data[key]
+        else:
+            for key in data:
                 for i in self.ex_quest:
                     if i == data[key]:
                         continue
                 self.ex_quest.append(data[key])
                 return data[key]
+
 
 #пользователь отправляет свой ответ
     def sendAnswer(self, answer, time):
