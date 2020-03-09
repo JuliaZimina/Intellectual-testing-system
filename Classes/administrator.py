@@ -5,20 +5,20 @@ from Classes.analyst import *
 class Administrator(Analyst):
     def __init__(self):
         pass
-    def block_user():
+    def block_user(user):
 	ban = true
 	smsapi = ssms_su.smsapi(user)
 	smsapi.push_msg("Hello, you are in block!", user)
-    def delete_question():
+    def delete_question(question):
 	del dictionary['question']
-    def close_group():
+    def close_group(group):
 	del dictionary['group'] 
 	'''dictionary.popitem()'''
-    def watch_questions(dectionary):
+    def watch_questions(dictionary):
 	print(dictinary)
     def add_question(question):
 	dictinary['group'] = question
-	time =  time
+	time = time
 	dictionary['varianti otveta'] = varianti
 	return dictinary
     def edit_question(question):
