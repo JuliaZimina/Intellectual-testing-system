@@ -7,8 +7,17 @@ class Administrator(Analyst):
         pass
     def block_user(user):
 	ban = true
-	smsapi = ssms_su.smsapi(user)
-	smsapi.push_msg("Hello, you are in block!", user)
+	'''smsapi = ssms_su.smsapi(user)
+	smsapi.push_msg("Hello, you are in block!", user)'''
+	msg = EmalMassage()
+   	msg['Subject'] = "Подтверждение регистрации"
+   	msg['From'] = EMAIL
+    	msg['To'] = mail
+   	msg.set_content("Вы подтвердили регистрацию")
+    
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+        smtp.login(EMAIL, PASSWORD)
+        smtp.send_massage(msg)
     def delete_question(question):
 	del dictionary['question']
     def close_group(group):
