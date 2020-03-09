@@ -29,7 +29,7 @@ class Test:
                             continue
                         else:
                             if len(self.ex_quest)%2 == 0:
-                                continue
+                                break
                 self.ex_quest.append(data[key][j])
                 return data[key][j]
 
