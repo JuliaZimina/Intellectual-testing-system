@@ -10,10 +10,10 @@ class Administrator(Analyst):
 	'''smsapi = ssms_su.smsapi(user)
 	smsapi.push_msg("Hello, you are in block!", user)'''
 	msg = EmalMassage()
-   	msg['Subject'] = "Подтверждение регистрации"
+   	msg['Subject'] = "Здравствуйте! Ваш аккаунт заблокирован."
    	msg['From'] = EMAIL
     	msg['To'] = mail
-   	msg.set_content("Вы подтвердили регистрацию")
+   	msg.set_content("Здравствуйте! Ваш аккаунт заблокирован.")
 	
 	with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
         	smtp.login(EMAIL, PASSWORD)
