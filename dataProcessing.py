@@ -136,4 +136,3 @@ userStat = read_users_statistics('Data/Ratings/usersStatistics.sys')
 print(userStat)
 print(groups_of_questions)
 secret_questions = ["f", "g"]
-print(printIncorrectAnswers("Математика",'Чему равно Пи'))

@@ -145,6 +145,8 @@ class EditQuestionWin(Ui_EditQuestionWindow,QtWidgets.QMainWindow):
         answer=self.answerLine.Text()
         incorrectAnswers=self.incorrectAnswersLine.Text(printIncorrectAnswers()).split(";")
         time=str(self.timespinBox.Value())
-        if edit:
-            admin.editQuestion(self.group,self.question)
+        if self.edit:
+            self.admin.editQuestion(self.group,self.question,new_theme,new_question,answer,incorrectAnswers,time)
+        else:
+            self.admin.addQuestion(new_theme,new_question,answer,incorrectAnswers,time)
 
