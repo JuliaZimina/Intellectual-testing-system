@@ -16,20 +16,22 @@ class Test:
         for key in data:
             if self.field != "general":
                 if key == self.field:
-                    for i in self.ex_quest:
-                        if i == data[key]:
-                            continue
-                    self.ex_quest.append(data[key])
-                    return data[key]
+                    for j in data[key]:
+                        for i in self.ex_quest:
+                            if i == j:
+                                continue
+                    self.ex_quest.append(data[key][j])
+                    return data[key][j]
             else:
-                if len(self.ex_quest)==0:
-
-                for i in self.ex_quest:
-                    if i == data[key]:
-                        continue
-                self.ex_quest.append(data[key])
-                return data[key]
-
+                for j in data[key]:
+                    for i in self.ex_quest:
+                        if i == j:
+                            continue
+                        else:
+                            if len(self.ex_quest)%2 == 0:
+                                continue
+                self.ex_quest.append(data[key][j])
+                return data[key][j]
 
 #пользователь отправляет свой ответ
     def sendAnswer(self, answer, time):
