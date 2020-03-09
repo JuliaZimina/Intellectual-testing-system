@@ -22,6 +22,8 @@ class Test:
                     self.ex_quest.append(data[key])
                     return data[key]
             else:
+                if len(self.ex_quest)==0:
+
                 for i in self.ex_quest:
                     if i == data[key]:
                         continue
