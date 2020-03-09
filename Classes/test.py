@@ -10,7 +10,6 @@ class Test:
         self.ex_quest = []
         self.number_of_quest = 5
         self.end_of_test = False
-        pass
 
 #генерирует следующий вопрос
     def getNextQuestion(self):
