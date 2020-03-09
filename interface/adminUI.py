@@ -16,13 +16,14 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
         self.user = user
         self.testing()
         self.userManager()
+        self.questionManager()
         # self.statistics()
         # userInformation(self)
         # statistics(self)
         self.setFixedSize(650, 500)
 
     def userManager(self):
-        self.userListLabel.setText(printUserInfo())
+        self.userListLabel.setText(printUserInfo(users))
         self.changeStatusButton.clicked.connect(self.openStatusWindow)
         self.BlockButton.clicked.connect(self.openBanWindow)
         self.changePasswordButton.clicked.connect(self.openRecoveryWinow)
@@ -56,6 +57,23 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
         self.Open = UserRecoveryWin()
         self.Open.show()
 
+    def questionManager(self):
+        self.groupsOfQuestionsBox.addItems(groups_of_questions)
+        group = self.groupsOfQuestionsBox.currentText()
+        self.questionsComboBox.addItems(tests[group].keys())
+        self.groupsOfQuestionsBox.currentTextChanged.connect(self.changeQuestions)
+        self.editQuestionButton.clicked.connect(self.openEditQuestionWindow)
+        self.deleteQuestionButton.clicked.connect(users.)
+
+
+    def changeQuestions(self):
+        self.questionsComboBox.clear()
+        group = self.groupsOfQuestionsBox.currentText()
+        self.questionsComboBox.addItems(tests[group].keys())
+
+    def openEditQuestionWindow(self):
+        pass
+
 
 class BanWin(Ui_BanWindow, QtWidgets.QMainWindow):
     def __init__(self, admin, parent=None):
@@ -77,6 +95,10 @@ class RoleWin(Ui_updateRoleWindow, QtWidgets.QMainWindow):
 
 
 class UserRecoveryWin(Ui_UnblockUserWindow, QtWidgets.QMainWindow):
-    def __init__(self, parent=None):
+    def __init__(self, admin, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
         self.setupUi(self)
+        self.admin = admin
+        self.userListLabel.setText(printUserInfo(recovery_requests))
+        self.loginBox.addItems(list(recovery_requests.keys()))
+        self.changeStatusButton.clicked.connect(admin.return_access(str(self.loginBox.currentText())))

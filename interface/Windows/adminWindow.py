@@ -194,6 +194,12 @@ class Ui_AdminWindow(object):
         self.label_15 = QtWidgets.QLabel(self.tab_5)
         self.label_15.setObjectName("label_15")
         self.verticalLayout_7.addWidget(self.label_15)
+        self.groupsOfQuestionsBox = QtWidgets.QComboBox(self.tab_5)
+        self.groupsOfQuestionsBox.setObjectName("groupsOfQuestionsBox")
+        self.verticalLayout_7.addWidget(self.groupsOfQuestionsBox)
+        self.label_4 = QtWidgets.QLabel(self.tab_5)
+        self.label_4.setObjectName("label_4")
+        self.verticalLayout_7.addWidget(self.label_4)
         self.questionsComboBox = QtWidgets.QComboBox(self.tab_5)
         self.questionsComboBox.setObjectName("questionsComboBox")
         self.verticalLayout_7.addWidget(self.questionsComboBox)
@@ -224,7 +230,7 @@ class Ui_AdminWindow(object):
         AdminWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(AdminWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(AdminWindow)
 
     def retranslateUi(self, AdminWindow):
@@ -260,7 +266,8 @@ class Ui_AdminWindow(object):
         self.statisticLabel.setText(_translate("AdminWindow", "TextLabel"))
         self.viewGraphicsButton.setText(_translate("AdminWindow", "Отобразить графики"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("AdminWindow", "Статистика"))
-        self.label_15.setText(_translate("AdminWindow", "Список вопросов:"))
+        self.label_15.setText(_translate("AdminWindow", "Группа вопросов:"))
+        self.label_4.setText(_translate("AdminWindow", "Список вопросов"))
         self.editQuestionButton.setText(_translate("AdminWindow", "Редактировать вопрос"))
         self.hideQuestionButton.setText(_translate("AdminWindow", "Скрыть вопрос"))
         self.hideGroupOfQuestionsButton.setText(_translate("AdminWindow", "Скрыть группу Вопросов"))

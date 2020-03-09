@@ -64,7 +64,7 @@ def read_users_info(file):
     else:
         return data
 
-def printUserInfo():
+def printUserInfo(users):
     string = ""
     for key in users.keys():
         string = string + "login:" + key + ", " + str(users[key]).replace("{", "").replace("}", "").replace("'","")+"\n"
