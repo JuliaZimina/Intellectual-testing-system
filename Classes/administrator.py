@@ -1,27 +1,28 @@
-import ssms_su
+#import ssms_su
 from Classes.analyst import *
 from dataProcessing import *
 
 
 class Administrator(Analyst):
     def __init__(self):
-        pass
+    	pass
+	#первый аргумент во всех методах класса всегда self
 	# удаляет вопрос из test+удаляет его из всей статистики
-	def deleteQuestion(group, question):
+	def deleteQuestion(self,group, question):
 		pass
 
 	# удаляет только из списка вопросов
-	def hideQuestion(group, question):
+	def hideQuestion(self,group, question):
 		del tests[group][question]
 
-	def hideGroup(group):
+	def hideGroup(self,group):
 		del tests[group]
 
 	# аналогично  с удалением вопроса
-	def deleteGroup(group):
+	def deleteGroup(self,group):
 		pass
 	#добавила поле с причиной, user-это будет не объект, а логин этого юзера
-    def block_user(user,reason):
+    def block_user(self,user,reason):
 	ban = true
 	'''smsapi = ssms_su.smsapi(user)
 	smsapi.push_msg("Hello, you are in block!", user)'''
@@ -47,9 +48,13 @@ class Administrator(Analyst):
 	dictionary[time] = time
 	dictionary[varianti otveta] = varianti
 	return dictinary
-    def edit_question(question):
-	dictionary['question'] = question
-	return dictionary
+	#этот метод еще и в статистике должен менять вопрос
+    def editQuestion(self,old_group,old_question,new_group,new_question,answer,incorrectAnswers,time):
+		dictionary['question'] = question
+		return dictionary
+	#добавить вопрос в tests
+	def addQuestion(self,new_group,new_question,answer,incorrectAnswers,time):
+		pass
 	#user-login,new_role="user"/"analyst"
     def roles(user,new_role):
 	'''user = analyst
