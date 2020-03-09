@@ -140,7 +140,7 @@ genStat = read_general_statistics('Data/Ratings/generalStatistics.sys')
 print(genStat)
 groupStat = read_group_statistic('Data/Ratings/groupStatistics.sys')
 print(groupStat)
-userStat = read_users_statistics('Data/Ratings/usersStatistics.sys')
+userStat = read_users_statistics('Data/Ratings/usersPersonalStatistics.sys')
 print(userStat)
 print(groups_of_questions)
 secret_questions = ["f", "g"]
