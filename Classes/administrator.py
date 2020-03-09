@@ -41,4 +41,4 @@ class Administrator(Analyst):
 	user = user'''
 	user-login,new_role="analyst"
     def return_access(user):
-	dictionary[user] = user
+	users[user] = user
