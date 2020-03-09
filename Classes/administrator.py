@@ -37,5 +37,5 @@ class Administrator(Analyst):
     def roles(user):
 	user = analyst
 	user = user
-    def return_access():
+    def return_access(user):
 	
