@@ -24,6 +24,9 @@ def read_tests(file):
         return data
     else:
         return data
+def printIncorrectAnswers(group,question):
+    answers=[tests[group][question]["ответ"][i] for i in range(1,len(tests[group][question]["ответ"]))]
+    return ";".join(answers)
 
 
 def read_users_statistics(file):
@@ -64,7 +67,7 @@ def read_users_info(file):
     else:
         return data
 
-def printUserInfo():
+def printUserInfo(users):
     string = ""
     for key in users.keys():
         string = string + "login:" + key + ", " + str(users[key]).replace("{", "").replace("}", "").replace("'","")+"\n"
@@ -133,3 +136,4 @@ userStat = read_users_statistics('Data/Ratings/usersStatistics.sys')
 print(userStat)
 print(groups_of_questions)
 secret_questions = ["f", "g"]
+print(printIncorrectAnswers("Математика",'Чему равно Пи'))

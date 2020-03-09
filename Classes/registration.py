@@ -100,6 +100,9 @@ def logIn(login, password): # вход
     
     if users[login]['password'] != password:
         raise Exception("Wrong password")
+        
+    if users[login]['status']:
+        raise Exception('The person is banned') 
 
     return True
 
