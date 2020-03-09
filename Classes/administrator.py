@@ -6,6 +6,20 @@ from dataProcessing import *
 class Administrator(Analyst):
     def __init__(self):
         pass
+	# удаляет вопрос из test+удаляет его из всей статистики
+	def deleteQuestion(group, question):
+		pass
+
+	# удаляет только из списка вопросов
+	def hideQuestion(group, question):
+		del tests[group][question]
+
+	def hideGroup(group):
+		del tests[group]
+
+	# аналогично  с удалением вопроса
+	def deleteGroup(group):
+		pass
 	#добавила поле с причиной, user-это будет не объект, а логин этого юзера
     def block_user(user,reason):
 	ban = true
@@ -43,14 +57,3 @@ class Administrator(Analyst):
 	user-login,new_role="analyst"
     def return_access(user):
 	users[user] = user
-	#удаляет вопрос из test+удаляет его из всей статистики
-	def deleteQuestion(group,question):
-		pass
-	#удаляет только из списка вопросов
-	def hideQuestion(group,question):
-		del tests[group][question]
-	def hideGroup(group):
-		del tests[group]
-	#аналогично из с удалением вопроса
-	def delteGroup(group):
-		pass
