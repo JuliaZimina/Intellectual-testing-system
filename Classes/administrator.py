@@ -14,6 +14,10 @@ class Administrator(Analyst):
    	msg['From'] = EMAIL
     	msg['To'] = mail
    	msg.set_content("Вы подтвердили регистрацию")
+	
+	with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+        	smtp.login(EMAIL, PASSWORD)
+        	smtp.send_massage(msg)
     
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
         smtp.login(EMAIL, PASSWORD)
