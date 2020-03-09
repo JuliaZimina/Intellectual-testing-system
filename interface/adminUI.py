@@ -1,4 +1,4 @@
-#from Classes.administrator import *
+# from Classes.administrator import *
 from interface.LogIn import *
 from interface.Windows.adminWindow import *
 from interface.Windows.DialogWindows.banWindow import *
@@ -33,7 +33,8 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
 
     def statistics(self):
         self.statisticLabel.setText(self.user.getStatistics())
-        # подключить кнопку
+        self.viewGraphicsButton.clicked.connect(self.openGraphicsWindow())
+
 
     def testing(self):
         self.questionThemeComboBox.addItems(groups_of_questions)
@@ -49,15 +50,15 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
         self.Open.show()
 
     def openStatusWindow(self):
-        self.Open = RoleWin()
+        self.Open = RoleWin(self.user)
         self.Open.show()
 
     def openBanWindow(self):
-        self.Open = BanWin()
+        self.Open = BanWin(self.user)
         self.Open.show()
 
     def openRecoveryWinow(self):
-        self.Open = UserRecoveryWin()
+        self.Open = UserRecoveryWin(self.user)
         self.Open.show()
 
     def questionManager(self):
@@ -78,15 +79,21 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
         self.editQuestionButton.clicked.connect(self.openEditQuestionWindow)
         self.AddQuestionButton.clicked.connect(self.openAddQuestionWindow)
     '''
+
     def changeQuestions(self):
         self.questionsComboBox.clear()
         group = self.groupsOfQuestionsBox.currentText()
         self.questionsComboBox.addItems(tests[group].keys())
 
     def openEditQuestionWindow(self):
-        pass
+        self.Open = EditQuestionWin(True, self.user, self.group, self.question)
+        self.Open.show()
 
     def openAddQuestionWindow(self):
+        self.Open = EditQuestionWin(False, self.user, self.group, self.question)
+        self.Open.show()
+
+    def openGraphicsWindow(self):
         pass
 
 
@@ -118,13 +125,14 @@ class UserRecoveryWin(Ui_UnblockUserWindow, QtWidgets.QMainWindow):
         self.loginBox.addItems(list(recovery_requests.keys()))
         self.changeStatusButton.clicked.connect(admin.return_access(str(self.loginBox.currentText())))
 
-class EditQuestionWin(Ui_EditQuestionWindow,QtWidgets.QMainWindow):
-    def __init__(self, edit,admin, group="", question="", parent=None):
+
+class EditQuestionWin(Ui_EditQuestionWindow, QtWidgets.QMainWindow):
+    def __init__(self, edit, admin, group="", question="", parent=None):
         QtWidgets.QWidget.__init__(self, parent)
-        self.admin=admin
-        self.edit=edit
-        self.group=group
-        self.question=question
+        self.admin = admin
+        self.edit = edit
+        self.group = group
+        self.question = question
         self.setupUi(self)
 
         if edit:
@@ -138,15 +146,13 @@ class EditQuestionWin(Ui_EditQuestionWindow,QtWidgets.QMainWindow):
         self.incorrectAnswersLine.setText(printIncorrectAnswers())
         self.timespinBox.setValue(tests[self.group][self.question]["время"])
 
-
     def sendEdit(self):
-        new_theme=self.themeLine.Text()
-        new_question=self.questionLine.Text()
-        answer=self.answerLine.Text()
-        incorrectAnswers=self.incorrectAnswersLine.Text(printIncorrectAnswers()).split(";")
-        time=str(self.timespinBox.Value())
+        new_theme = self.themeLine.Text()
+        new_question = self.questionLine.Text()
+        answer = self.answerLine.Text()
+        incorrectAnswers = self.incorrectAnswersLine.Text(printIncorrectAnswers()).split(";")
+        time = str(self.timespinBox.Value())
         if self.edit:
-            self.admin.editQuestion(self.group,self.question,new_theme,new_question,answer,incorrectAnswers,time)
+            self.admin.editQuestion(self.group, self.question, new_theme, new_question, answer, incorrectAnswers, time)
         else:
-            self.admin.addQuestion(new_theme,new_question,answer,incorrectAnswers,time)
-
+            self.admin.addQuestion(new_theme, new_question, answer, incorrectAnswers, time)

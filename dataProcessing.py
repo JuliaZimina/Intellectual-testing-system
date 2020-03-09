@@ -18,8 +18,14 @@ def read_tests(file):
                     for x in b:
                         if x != '' and x != ' ':
                             c.append(x.rstrip())
-                    groups_of_questions.append(a)
-                    data[a] = {c[0]: {'время': c[1], 'ответ': c[2:]}}
+                    if a not in groups_of_questions:
+                        groups_of_questions.append(a)
+                    if a not in data.keys():
+                        data[a] = {c[0]: {'время': c[1], 'ответ': c[2:]}}
+                    else:
+                        tmp=data[a]
+                        tmp[c[0]]={'время': c[1], 'ответ': c[2:]}
+                        data[a]=tmp
         # print(data)
         return data
     else:
