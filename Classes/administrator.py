@@ -25,7 +25,7 @@ class Administrator(Analyst):
 	'''dictionary.popitem()'''
     def watch_questions(dictionary):
 	for group in dictionary:
-    		print % (group, dictionary[group])
+    		print "%s : %s" % (group, dictionary[group])
     def add_question(question):
 	dictinary['group'] = question
 	time = time
