@@ -31,7 +31,7 @@ def openQuestionWindow(self, theme):
     question.show()
 
 
-def delteUser(self):
+def deleteUser(self):
     del self.user
     self.close()
 

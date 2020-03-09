@@ -42,10 +42,6 @@ class LogInWin(QtWidgets.QMainWindow):
         self.setFixedSize(500, 500)
         self.attempts=0
         # кнопка входа
-        #while not(self.ui.loginLine.text() and self.ui.passwordLine.text()):
-            #self.ui.logInButton.setDisabled(True)
-        #if (self.ui.loginLine.text() and self.ui.passwordLine.text()):
-        #self.ui.logInButton.setDisabled(False)
         self.ui.logInButton.clicked.connect(self.logInUI)
         # кнопка регистрации
         self.ui.unregisteredButton.clicked.connect(self.registrationUI)

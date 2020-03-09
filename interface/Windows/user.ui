@@ -75,9 +75,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-124</y>
+             <y>0</y>
              <width>354</width>
-             <height>434</height>
+             <height>459</height>
             </rect>
            </property>
            <layout class="QFormLayout" name="formLayout_2">
@@ -98,54 +98,54 @@
               </property>
              </widget>
             </item>
-            <item row="2" column="0">
+            <item row="3" column="0">
              <widget class="QLabel" name="label_7">
               <property name="text">
                <string>Имя*</string>
               </property>
              </widget>
             </item>
-            <item row="2" column="1">
+            <item row="3" column="1">
              <widget class="QLineEdit" name="nameLine"/>
             </item>
-            <item row="3" column="0">
+            <item row="4" column="0">
              <widget class="QLabel" name="label_6">
               <property name="text">
                <string>Фамилия*</string>
               </property>
              </widget>
             </item>
-            <item row="3" column="1">
+            <item row="4" column="1">
              <widget class="QLineEdit" name="surnameLine"/>
             </item>
-            <item row="4" column="0">
+            <item row="5" column="0">
              <widget class="QLabel" name="label_13">
               <property name="text">
                <string>Отчество</string>
               </property>
              </widget>
             </item>
-            <item row="4" column="1">
+            <item row="5" column="1">
              <widget class="QLineEdit" name="faternityLine"/>
             </item>
-            <item row="5" column="0">
+            <item row="6" column="0">
              <widget class="QLabel" name="label_8">
               <property name="text">
                <string>Дата рождения*</string>
               </property>
              </widget>
             </item>
-            <item row="5" column="1">
+            <item row="6" column="1">
              <widget class="QDateEdit" name="dateOfBirth"/>
             </item>
-            <item row="6" column="0">
+            <item row="7" column="0">
              <widget class="QLabel" name="label_9">
               <property name="text">
                <string>Группа*</string>
               </property>
              </widget>
             </item>
-            <item row="6" column="1">
+            <item row="7" column="1">
              <widget class="QComboBox" name="group">
               <item>
                <property name="text">
@@ -159,14 +159,14 @@
               </item>
              </widget>
             </item>
-            <item row="7" column="0">
+            <item row="8" column="0">
              <widget class="QLabel" name="label_10">
               <property name="text">
                <string>Секретный вопрос*</string>
               </property>
              </widget>
             </item>
-            <item row="7" column="1">
+            <item row="8" column="1">
              <widget class="QComboBox" name="question">
               <item>
                <property name="text">
@@ -185,58 +185,58 @@
               </item>
              </widget>
             </item>
-            <item row="8" column="0">
+            <item row="9" column="0">
              <widget class="QLabel" name="label_11">
               <property name="text">
                <string>Ответ*</string>
               </property>
              </widget>
             </item>
-            <item row="8" column="1">
+            <item row="9" column="1">
              <widget class="QLineEdit" name="answerLine"/>
             </item>
-            <item row="9" column="0">
+            <item row="10" column="0">
              <widget class="QLabel" name="label_3">
               <property name="text">
                <string>Эл. почта*</string>
               </property>
              </widget>
             </item>
-            <item row="9" column="1">
+            <item row="10" column="1">
              <widget class="QLineEdit" name="emailLine"/>
             </item>
-            <item row="10" column="0">
+            <item row="11" column="0">
              <widget class="QLabel" name="label_12">
               <property name="text">
                <string>Телефон</string>
               </property>
              </widget>
             </item>
-            <item row="10" column="1">
+            <item row="11" column="1">
              <widget class="QLineEdit" name="phoneLine"/>
             </item>
-            <item row="11" column="1">
+            <item row="12" column="1">
              <widget class="QPushButton" name="accceptChangesButton">
               <property name="text">
                <string>Подтвердить изменения</string>
               </property>
              </widget>
             </item>
-            <item row="14" column="0" colspan="2">
+            <item row="15" column="0" colspan="2">
              <widget class="QPushButton" name="deleteUserButton">
               <property name="text">
                <string>Удалить пользователя</string>
               </property>
              </widget>
             </item>
-            <item row="15" column="0" colspan="2">
+            <item row="16" column="0" colspan="2">
              <widget class="QLabel" name="errorChangesLabel">
               <property name="text">
                <string/>
               </property>
              </widget>
             </item>
-            <item row="13" column="0" colspan="2">
+            <item row="14" column="0" colspan="2">
              <widget class="QLabel" name="label_2">
               <property name="text">
                <string>После внесения изменений, потребуется перезайти</string>
@@ -245,6 +245,16 @@
                <set>Qt::AlignCenter</set>
               </property>
              </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_4">
+              <property name="text">
+               <string>Пароль*</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLineEdit" name="passwordlineEdit"/>
             </item>
            </layout>
           </widget>

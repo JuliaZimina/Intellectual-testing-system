@@ -18,8 +18,8 @@ class UserWin(QtWidgets.QMainWindow, Ui_UserWindow):
         self.user = current_user
         self.setupUi(self)
         self.testing()
-        # userInformation(self)
-        # statistics(self)
+        self.userInformation()
+        self.statistics()
         self.setFixedSize(650, 500)
 
     def testing(self):
@@ -39,3 +39,44 @@ class UserWin(QtWidgets.QMainWindow, Ui_UserWindow):
     def openGeneralQuestionWindow(self):
         self.Open = QuestionWin("general")
         self.Open.show()
+
+
+    def userInformation(self):
+        self.passwordlineEdit.setText(self.user.getPassword())
+        self.nameLine.setText(self.user.getName())
+        self.surnameLine.setText(self.user.getSurname())
+        self.faternityLine.setText(self.user.getFatherName())
+        date = self.user.getDateOfBirth()
+        self.dateOfBirth.setDate(QtCore.QDate(date.day, date.month, date.year))
+        question = [self.user.getSecretQuestion()]
+        questions = question + [x for x in secret_questions if x != question[0]]
+        self.question.addItems(questions)
+        self.answerLine.setText(self.user.getSecretAnswer())
+        self.emailLine.setText(self.user.getEmail())
+        self.phoneLine.setText(self.user.getPhoneNumber())
+        self.accceptChangesButton.clicked.connect(self.makeChanges)
+        self.deleteUserButton.clicked.connect(self.deleteUser)
+
+    def statistics(self):
+        self.statisticsLabel.setText(self.user.getStatistics())
+
+
+    def deleteUser(self):
+        del self.user
+        self.close()
+
+    def makeChanges(self):
+        try:
+            self.user.setPassword(self.passwordLineEdit.text())
+            self.user.setName(self.nameLine.text())
+            self.user.setSurname(self.surnameLine.text())
+            self.user.setFatherName(self.faternityLine.text())
+            self.user.setDateOfBirth(self.dateOfBirth.text())
+            self.user.setGroup(self.group.currentText())
+            self.user.setSecretQuestion(self.question.currentText())
+            self.user.setSecretAnswer(self.answerLine.text())
+            self.user.setEmail(self.emailLine.text())
+            self.user.setPhoneNumber(self.phoneLine.text())
+        except Exception as e:
+            self.errorChangesLabel.setText(str(e))
+
