@@ -21,6 +21,9 @@ class Administrator(Analyst):
 	# аналогично  с удалением вопроса
 	def deleteGroup(self,group):
 		pass
+	#возьмем из genetalStatistics
+	def getStatistics():
+		pass
 	#добавила поле с причиной, user-это будет не объект, а логин этого юзера
     def block_user(self,user,reason):
 	ban = true
