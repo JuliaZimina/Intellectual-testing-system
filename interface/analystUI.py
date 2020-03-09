@@ -18,17 +18,16 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
         self.setupUi(self)
         self.user = user
         self.testing()
-        self.userManager()
         self.questionManager()
         self.statistics()
         self.userInformation()
         self.setFixedSize(650, 500)
 
     def userInformation(self):
-        self.passwordLineEdit.setText(self.user.getPassword())
         self.nameLine.setText(self.user.getName())
         self.surnameLine.setText(self.user.getSurname())
         self.faternityLine.setText(self.user.getFatherName())
+        self.passwordLineEdit.setText(self.user.getPassword())
         date = self.user.getDateOfBirth()
         self.dateOfBirth.setDate(QtCore.QDate(date.day, date.month, date.year))
         question = [self.user.getSecretQuestion()]
@@ -54,16 +53,10 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
         except Exception as e:
             self.errorChangesLabel.setText(str(e))
 
-    def userManager(self):
-        self.userListLabel.setText(printUserInfo(users))
-        self.changeStatusButton.clicked.connect(self.openStatusWindow)
-        self.BlockButton.clicked.connect(self.openBanWindow)
-        self.changePasswordButton.clicked.connect(self.openRecoveryWinow)
 
     def statistics(self):
         self.statisticLabel.setText(self.user.getStatistics())
         self.viewGraphicsButton.clicked.connect(self.openGraphicsWindow())
-
 
     def testing(self):
         self.questionThemeComboBox.addItems(groups_of_questions)
@@ -78,17 +71,6 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
         self.Open = QuestionWin("general")
         self.Open.show()
 
-    def openStatusWindow(self):
-        self.Open = RoleWin(self.user)
-        self.Open.show()
-
-    def openBanWindow(self):
-        self.Open = BanWin(self.user)
-        self.Open.show()
-
-    def openRecoveryWinow(self):
-        self.Open = UserRecoveryWin(self.user)
-        self.Open.show()
 
     def questionManager(self):
         self.groupsOfQuestionsBox.addItems(groups_of_questions)
@@ -100,7 +82,7 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
         '''
         self.deleteQuestionButton.clicked.connect(
             self.user.deleteQuestion(self.groupsOfQuestionsBox.currentText(), self.questionsComboBox.currentText()))
-        
+
         self.deleteGroupOfQuestionsButton.clicked.connect(self.user.deleteGroup(self.groupsOfQuestionsBox.currentText()))
         self.hideQuestionButton.clicked.connect(
             self.user.hideQuestion(self.groupsOfQuestionsBox.currentText(), self.questionsComboBox.currentText()))
@@ -126,33 +108,7 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
         pass
 
 
-class BanWin(Ui_BanWindow, QtWidgets.QMainWindow):
-    def __init__(self, admin, parent=None):
-        QtWidgets.QWidget.__init__(self, parent)
-        self.admin = admin
-        self.setupUi(self)
-        self.loginBox.addItems(list(users.keys()))
-        self.banButton.clicked.connect(admin.block_user(str(self.loginBox.currentText())), str(self.reasonLine.text()))
 
-
-class RoleWin(Ui_updateRoleWindow, QtWidgets.QMainWindow):
-    def __init__(self, admin, parent=None):
-        QtWidgets.QWidget.__init__(self, parent)
-        self.setupUi(self)
-        self.admin = admin
-        self.loginBox.addItems(list(users.keys()))
-        self.changeStatusButton.clicked.connect(admin.roles(str(self.loginBox.currentText())),
-                                                str(self.statusBox.currentText()))
-
-
-class UserRecoveryWin(Ui_UnblockUserWindow, QtWidgets.QMainWindow):
-    def __init__(self, admin, parent=None):
-        QtWidgets.QWidget.__init__(self, parent)
-        self.setupUi(self)
-        self.admin = admin
-        self.userListLabel.setText(printUserInfo(recovery_requests))
-        self.loginBox.addItems(list(recovery_requests.keys()))
-        self.changeStatusButton.clicked.connect(admin.return_access(str(self.loginBox.currentText())))
 
 
 class EditQuestionWin(Ui_EditQuestionWindow, QtWidgets.QMainWindow):
@@ -185,3 +141,4 @@ class EditQuestionWin(Ui_EditQuestionWindow, QtWidgets.QMainWindow):
             self.admin.editQuestion(self.group, self.question, new_theme, new_question, answer, incorrectAnswers, time)
         else:
             self.admin.addQuestion(new_theme, new_question, answer, incorrectAnswers, time)
+
