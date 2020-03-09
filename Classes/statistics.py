@@ -20,7 +20,7 @@ categories = df['математика']
 
 def func(pct, allvals):
     absolute = int(pct/100.*np.sum(allvals))
-    return "{:.1f}% ({:d} )".format(pct, absolute)
+    return "{:.1f}% ".format(pct, absolute)
 
 wedges, texts, autotexts = ax.pie(data,
                                   autopct=lambda pct: func(pct, data),
