@@ -31,4 +31,5 @@ wedges, texts, autotexts = ax.pie(data,
                                  shadow=True)
 
 ax.legend(wedges, categories, title="Оценки", loc="center left", bbox_to_anchor=(1, 0, 0.5, 1))
-
+plt.setp(autotexts, size=10, weight=700)
+ax.set_title("Оценки и процент пользователей, их получивших (математика)")
