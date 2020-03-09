@@ -18,10 +18,6 @@ class Administrator(Analyst):
 	with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
         	smtp.login(EMAIL, PASSWORD)
         	smtp.send_massage(msg)
-    
-    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-        smtp.login(EMAIL, PASSWORD)
-        smtp.send_massage(msg)
     def delete_question(question):
 	del dictionary['question']
     def close_group(group):
