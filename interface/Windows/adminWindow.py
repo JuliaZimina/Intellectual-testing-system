@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_AdminWindow(object):
     def setupUi(self, AdminWindow):
         AdminWindow.setObjectName("AdminWindow")
-        AdminWindow.resize(411, 330)
+        AdminWindow.resize(451, 389)
         self.centralwidget = QtWidgets.QWidget(AdminWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -28,9 +28,9 @@ class Ui_AdminWindow(object):
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label)
-        self.qustionThemeComboBox = QtWidgets.QComboBox(self.tab)
-        self.qustionThemeComboBox.setObjectName("qustionThemeComboBox")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.qustionThemeComboBox)
+        self.questionThemeComboBox = QtWidgets.QComboBox(self.tab)
+        self.questionThemeComboBox.setObjectName("questionThemeComboBox")
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.questionThemeComboBox)
         self.themeTestButton = QtWidgets.QPushButton(self.tab)
         self.themeTestButton.setObjectName("themeTestButton")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.themeTestButton)
@@ -50,7 +50,7 @@ class Ui_AdminWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.scrollArea_3.setObjectName("scrollArea_3")
         self.scrollAreaWidgetContents_3 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_3.setGeometry(QtCore.QRect(0, 0, 367, 203))
+        self.scrollAreaWidgetContents_3.setGeometry(QtCore.QRect(0, 0, 407, 238))
         self.scrollAreaWidgetContents_3.setObjectName("scrollAreaWidgetContents_3")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents_3)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
@@ -78,7 +78,7 @@ class Ui_AdminWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, -148, 354, 440))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 394, 440))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.formLayout_2 = QtWidgets.QFormLayout(self.scrollAreaWidgetContents)
         self.formLayout_2.setObjectName("formLayout_2")
@@ -174,7 +174,7 @@ class Ui_AdminWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollArea_2.setObjectName("scrollArea_2")
         self.scrollAreaWidgetContents_2 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 367, 290))
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 407, 325))
         self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
         self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents_2)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
@@ -224,7 +224,7 @@ class Ui_AdminWindow(object):
         AdminWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(AdminWindow)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(AdminWindow)
 
     def retranslateUi(self, AdminWindow):

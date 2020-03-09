@@ -64,6 +64,11 @@ def read_users_info(file):
     else:
         return data
 
+def printUserInfo():
+    string = ""
+    for key in users.keys():
+        string = string + "login:" + key + ", " + str(users[key]).replace("{", "").replace("}", "").replace("'","")+"\n"
+    return string
 
 def read_general_statistics(file):
     data = {}
@@ -116,6 +121,8 @@ def read_group_statistic(file):
 # login;password;status;ban;name,surname;father_name;date_of_birth;group;secret_question;secret_answer;email;tel
 users = read_users_info('Data/UsersInfo/users.sys')
 print(users)
+
+
 # группа;вопрос;время;правильный ответ;ответ;ответ
 tests = read_tests('Data/Content/tests.sys')
 print(tests)

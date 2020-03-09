@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>411</width>
-    <height>330</height>
+    <width>451</width>
+    <height>389</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -36,7 +36,7 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QComboBox" name="qustionThemeComboBox"/>
+         <widget class="QComboBox" name="questionThemeComboBox"/>
         </item>
         <item row="1" column="1">
          <widget class="QPushButton" name="themeTestButton">
@@ -76,8 +76,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>367</width>
-             <height>203</height>
+             <width>407</width>
+             <height>238</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -129,8 +129,8 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-148</y>
-             <width>354</width>
+             <y>0</y>
+             <width>394</width>
              <height>440</height>
             </rect>
            </property>
@@ -316,8 +316,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>367</width>
-             <height>290</height>
+             <width>407</width>
+             <height>325</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_6">
