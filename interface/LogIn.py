@@ -37,7 +37,7 @@ class LogInWin(QtWidgets.QMainWindow):
             #user = logIn(login, password)
             self.close()
             user=Administrator("rat1122","890568901","Herman","Snitch","Syslikov","13.09.2000","18БИ1","f","q",'vasya@gmaol.com',"880000")
-            print(type(user))
+            print(type(user)==Administrator)
             #self.Open = UserWin(user)
             self.Open = AdminWin(user)
             self.Open.show()

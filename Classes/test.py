@@ -62,7 +62,7 @@ class Test:
 
 test1=Test("История")
 print(test1.getNextQuestion())
-test1.sendAnswer("ggg",30)
+#test1.sendAnswer("ggg",30)
 test2=Test("general")
 print("start")
 print(test2.getNextQuestion())
