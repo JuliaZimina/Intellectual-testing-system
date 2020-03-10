@@ -1,13 +1,8 @@
 # from Classes.administrator import *
 from interface.LogIn import *
 from interface.Windows.adminWindow import *
-from interface.Windows.DialogWindows.banWindow import *
-from interface.Windows.DialogWindows.statusWindow import *
-from interface.Windows.DialogWindows.userRecoveryWindow import *
-from PyQt5 import QtWidgets
 
 from interface.Windows.editQuestionWindow import *
-from interface.templateUserUI import *
 from interface.questionWindowUI import QuestionWin
 
 

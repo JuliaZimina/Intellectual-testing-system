@@ -1,6 +1,3 @@
-import sys
-
-from interface.LogIn import *
 from interface.Windows.registrationWindow import *
 #from interface.LogIn import *
 from Classes.registration import *
@@ -23,11 +20,10 @@ class RegistrationWin(QtWidgets.QMainWindow, Ui_RegistrationWindow):
             registration(login=self.loginLine.text(), password=self.passwordLine.text(), name=self.nameLine.text(),
                          surname=self.surnameLine.text(), father_name=self.faternityLine.text(),
                          date_of_birth=self.dateOfBirth.text(), group=self.group.currentText(),
-                         secret_question=self.question.currentText(), secret_answer=self.answerLine.text(),
+                         secret_question=self.question.currentText(), answer=self.answerLine.text(),
                          email=self.emailLine.text(), tel=self.phoneLine.text())
 
         except Exception as e:
-            self.ui.errorLabel.setText(str(e))
-        print("here")
+            self.errorLabel.setText(str(e))
         self.close()
         #открыть окно вы зарегистрированы

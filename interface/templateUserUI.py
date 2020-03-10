@@ -1,4 +1,3 @@
-from dataProcessing import *
 from interface.LogIn import *
 from interface.questionWindowUI import QuestionWin
 def testing(self):

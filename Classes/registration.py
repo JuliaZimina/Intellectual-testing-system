@@ -1,7 +1,7 @@
 #from emal.massage import EmalMassage
 import smtplib
 
-from dataProcessing import users
+from dataProcessing import users,recovery_requests
 #from secretQuestions import secret_questions
 EMAIL = "zeiwjfew@yandex.ru"
 PASSWORD = "ooP123"
@@ -46,7 +46,7 @@ def registration(login,password,name,surname,father_name,date_of_birth,group,sec
 
     if not checkLogin(login):
         raise Exception("Such name already exists")
-        
+
 
     if not checkPassword(password):
          raise Exception("Your password should be larger than 8")
@@ -54,25 +54,38 @@ def registration(login,password,name,surname,father_name,date_of_birth,group,sec
 
     if not checkNames(name):
         raise Exception("This field is requried")
-    
+
     if not checkNames(surname):
-        raise Exception("This field is requried")     
+        raise Exception("This field is requried")
 
     if not checkNames(answer):
         raise Exception("This field is requried")
-    
+
 
     if not checkNames(email):
         raise Exception("This field is requried")
-    
-    users[login] = {'password': password, 'status': 'regular_user', 'ban' : False, 'name' :  name, 'date_of_birth' : date_of_birth, 'tel':tel, 
+
+    users[login] = {'password': password, 'status': 'regular_user', 'ban' : False, 'name' :  name, 'date_of_birth' : date_of_birth, 'tel':tel,
     'father_name' : father_name, 'surname' : surname, 'group' : group, 'secret_question' : secret_question, 'secret_answer' : answer, 'email' : email, 'photo' : photo}
 
-    
+
     sendMessage(email)
-    
-    
+
+
     return templateUser('...')
+
+
+def recoveryRequest(login, password, name, surname, father_name, date_of_birth, group, secret_question, answer, email, tel,
+                 photo=""):
+
+    recovery_requests[login] = {'password': password, 'status': 'regular_user', 'ban': False, 'name': name,
+                    'date_of_birth': date_of_birth, 'tel': tel,
+                    'father_name': father_name, 'surname': surname, 'group': group, 'secret_question': secret_question,
+                    'secret_answer': answer, 'email': email, 'photo': photo}
+
+    sendMessage(email) #сообщение должно быть ваш запрос на восстановление оптравлен
+
+
 
     
        
@@ -87,6 +100,8 @@ def checkSecretAnswer(login, answer):
 def changePassword(login, new_password):
     if new_password == users[login]["password"]:
         raise Exception("New password shouldn't be equal to old one")
+    if not checkPassword(new_password):
+         raise Exception("Your password should be larger than 8")
     #в словаре изменить пароль еще нужно
     
     return True

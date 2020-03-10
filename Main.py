@@ -1,5 +1,3 @@
-import sys
-
 from interface.LogIn import *
 from PyQt5 import QtWidgets
 

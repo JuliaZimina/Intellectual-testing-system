@@ -1,16 +1,7 @@
-import pandas as pd
-import matplotlib as mpl
-import matplotlib.pyplot as plt
-import seaborn as sns
-import numpy as np
-from dataProcessing import *
-from interface.LogIn import *
-from interface.templateUserUI import *
 from interface.Windows.userWindow import *
 from PyQt5 import QtWidgets
 
 from interface.questionWindowUI import QuestionWin
-from interface.templateUserUI import userInformation
 
 
 # from interface.templateUserUI import testing
