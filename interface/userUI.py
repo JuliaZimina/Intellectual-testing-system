@@ -1,8 +1,12 @@
+import pandas as pd
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
 from dataProcessing import *
 from interface.LogIn import *
 from interface.templateUserUI import *
 from interface.Windows.userWindow import *
-
 from PyQt5 import QtWidgets
 
 from interface.questionWindowUI import QuestionWin
@@ -17,14 +21,16 @@ class UserWin(QtWidgets.QMainWindow, Ui_UserWindow):
         QtWidgets.QWidget.__init__(self, parent)
         self.user = current_user
         self.setupUi(self)
-        self.testing()
-        self.userInformation()
-        self.statistics()
+        #self.testing()
+        #self.userInformation()
+        #self.statistics()
+        self.plot()
         self.setFixedSize(650, 500)
 
     def testing(self):
         self.questionThemeComboBox.addItems(groups_of_questions)
         self.themeTestButton.clicked.connect(self.openThemeQuestionWindow)
+
         #if self.user.getGeneralTestCounter() >= 3:
         a=1
         if a==0:
@@ -39,7 +45,11 @@ class UserWin(QtWidgets.QMainWindow, Ui_UserWindow):
     def openGeneralQuestionWindow(self):
         self.Open = QuestionWin("general")
         self.Open.show()
-
+    def plot(self):
+        sns.catplot(x="группа вопросов", y="количество правильных",
+                    data=pd.read_csv('../Data/Ratings/groupStatistics.sys', sep=";"), height=6, kind="bar",
+                    hue='группа людей')
+        self.draw()
 
     def userInformation(self):
         self.passwordlineEdit.setText(self.user.getPassword())

@@ -9,7 +9,7 @@ sns.catplot(x="группа вопросов", y="количество отве�
 sns.catplot(x="группа вопросов", y="количество правильных", data=pd.read_csv('../Data/Ratings/groupStatistics.sys',sep=";"), height=6, kind="bar",  hue = 'группа людей')
 
 #круговые диаграммы с оценками по группам вопросов (отдельно для каждой группы, здесь только математика)
-df_users = pd.read_csv('../Data/Ratings/groupStatistics.sys',sep=";")
+df_users = pd.read_csv('../Data/Ratings/usersStatistics.sys',sep=";")
 
 df = df_users.groupby('математика').size().reset_index(name='логин')
 
@@ -34,3 +34,4 @@ wedges, texts, autotexts = ax.pie(data,
 ax.legend(wedges, categories, title="Оценки", loc="center left", bbox_to_anchor=(1, 0, 0.5, 1))
 plt.setp(autotexts, size=10, weight=700)
 ax.set_title("Оценки и процент пользователей, их получивших (математика)")
+plt.show()
