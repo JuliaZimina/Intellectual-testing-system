@@ -35,20 +35,16 @@ class LogInWin(QtWidgets.QMainWindow):
             self.Open = UserWin("user")
             #self.Open = AdminWin("user")
             self.Open.show()
-
             # открыть следующее окно
         except Exception as e:
             self.ui.errorLabel.setText(str(e))
             self.attempts += 1
             if self.attempts > 3:
                 user = tmpLogIn(login)
-                # открыть окно восстановления пароля
+                self.close()
+                self.Open=SecretQuestionWin(user)
+                self.Open.show()
 
-
-    # обработка восстановления пароля
-    def processPasswordRecovery(self):
-        print("1")
-        pass
 
     def registrationUI(self):
         self.close()
@@ -60,11 +56,9 @@ class SecretQuestionWin(QtWidgets.QMainWindow,Ui_SecretQuestionWindow):
 
     def __init__(self,user, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
-        self.ui.setupUi(self)
+        self.setupUi(self)
         self.user=user
         self.secretQuestionLabel.setText(self.user.getSecretQuestion())
-
-
         self.answerButton.clicked.connect(self.checkSecretAnswer)
 
     def checkSecretAnswer(self):

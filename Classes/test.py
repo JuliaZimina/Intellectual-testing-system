@@ -17,11 +17,10 @@ class Test:
             if self.field != "general":
                 if key == self.field:
                     for j in tests[key]:
-                        for i in self.ex_quest:
-                            if i == j:
-                                continue
-                        self.ex_quest.append(tests[key][j])
-                        return tests[key][j]
+                        if [j,tests[key][j]] in self.ex_quest:
+                            continue
+                        self.ex_quest.append([j,tests[key][j]])
+                        return [j,tests[key][j]]
             else:
                 for j in tests[key]:
                     for i in self.ex_quest:
@@ -40,6 +39,7 @@ class Test:
     def getResult(self):
         pass
 test1=Test("История")
+print(test1.getNextQuestion())
 print(test1.getNextQuestion())
 print(test1.getNextQuestion())
 test2=Test("general")
