@@ -28,11 +28,6 @@ class TemplateUser:
             return False
         return True
 
-    def checkSecretAnswer(secret_answer):
-        if secret_answer == '':
-            return False
-        return True
-
     def checkEmail(email):
         if email == '':
             return False
@@ -71,4 +66,19 @@ class TemplateUser:
     def setSecretQuestion(self, new_secret_question):
         if checkSecretQuestion(new_secret_question):
             users[login]['secret_question'] = new_secret_question
+        return users
+
+    def setSecretAnswer(self, new_secret_answer):
+        if checkSecretAnswer(login, answer):
+            users[login]['secret_answer'] = new_secret_answer
+        return users
+
+    def setEmail(self, new_email):
+        if checkEmail(new_email):
+            users[login]['email'] = new_email
+        return users
+
+    def setTel(self, new_tel):
+        if checkTel(new_tel):
+            users[login]['tel'] = new_tel
         return users
