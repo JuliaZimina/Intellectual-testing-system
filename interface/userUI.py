@@ -15,19 +15,16 @@ class UserWin(QtWidgets.QMainWindow, Ui_UserWindow):
         QtWidgets.QWidget.__init__(self, parent)
         self.user = current_user
         self.setupUi(self)
-        #self.testing()
-        #self.userInformation()
-        #self.statistics()
-        self.plot()
+        self.testing()
+        self.userInformation()
+        self.statistics()
         self.setFixedSize(650, 500)
 
     def testing(self):
         self.questionThemeComboBox.addItems(groups_of_questions)
         self.themeTestButton.clicked.connect(self.openThemeQuestionWindow)
 
-        #if self.user.getGeneralTestCounter() >= 3:
-        a=1
-        if a==0:
+        if self.user.getGeneralTestCounter() >= 3:
             self.genetalTestButton.setDisabled(True)
         else:
             self.genetalTestButton.clicked.connect(self.openGeneralQuestionWindow)
@@ -46,9 +43,7 @@ class UserWin(QtWidgets.QMainWindow, Ui_UserWindow):
         self.nameLine.setText(self.user.getName())
         self.surnameLine.setText(self.user.getSurname())
         self.faternityLine.setText(self.user.getFatherName())
-        date = self.user.getDateOfBirth()
-        date=datetime.datetime.strptime(date, "%d.%m.%Y")
-        self.dateOfBirth.setDate(QtCore.QDate(date.day, date.month, date.year))
+        self.dateOfBirthLine.setText(self.user.getDateOfBirth())
         question = [self.user.getSecretQuestion()]
         questions = question + [x for x in secret_questions if x != question[0]]
         self.question.addItems(questions)
@@ -63,7 +58,7 @@ class UserWin(QtWidgets.QMainWindow, Ui_UserWindow):
 
 
     def deleteUser(self):
-        del self.user
+        self.user.deleteUser()
         self.close()
 
     def makeChanges(self):
@@ -73,14 +68,13 @@ class UserWin(QtWidgets.QMainWindow, Ui_UserWindow):
             self.user.setName(self.nameLine.text())
             self.user.setSurname(self.surnameLine.text())
             self.user.setFatherName(self.faternityLine.text())
-            temp_var = self.dateOfBirth.date()
-            temp_var = temp_var.toPyDate()
-            self.user.setDateOfBirth(str(temp_var))
+            self.user.setDateOfBirth(self.dateOfBirthLine.text())
             self.user.setGroup(self.group.currentText())
             self.user.setSecretQuestion(self.question.currentText())
             self.user.setSecretAnswer(self.answerLine.text())
             self.user.setEmail(self.emailLine.text())
             self.user.setPhoneNumber(self.phoneLine.text())
+
         except Exception as e:
             self.errorChangesLabel.setText(str(e))
 

@@ -8,3 +8,9 @@ class User(TemplateUser):
 
     def getStatistics(self):
         return str(userStat[self.login])
+    def getGeneralTestCounter(self):
+        count = 0
+        for test in userStat[self.login]:
+            if "generall" in test:
+                count += 1
+
