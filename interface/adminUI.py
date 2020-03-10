@@ -15,11 +15,11 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
         QtWidgets.QWidget.__init__(self, parent)
         self.setupUi(self)
         self.user = user
-        self.testing()
-        self.userManager()
-        self.questionManager()
+        #self.testing()
+        #self.userManager()
+        #self.questionManager()
         self.statistics()
-        self.userInformation()
+        #self.userInformation()
         self.setFixedSize(650, 500)
 
     def userInformation(self):
@@ -27,8 +27,7 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
         self.nameLine.setText(self.user.getName())
         self.surnameLine.setText(self.user.getSurname())
         self.faternityLine.setText(self.user.getFatherName())
-        date = self.user.getDateOfBirth()
-        self.dateOfBirth.setDate(QtCore.QDate(date.day, date.month, date.year))
+        self.dateOfBirthLine.setText(self.user.getDateOfBirth())
         question = [self.user.getSecretQuestion()]
         questions = question + [x for x in secret_questions if x != question[0]]
         self.question.addItems(questions)
@@ -43,7 +42,7 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
             self.user.setName(self.nameLine.text())
             self.user.setSurname(self.surnameLine.text())
             self.user.setFatherName(self.faternityLine.text())
-            self.user.setDateOfBirth(self.dateOfBirth.text())
+            self.user.setDateOfBirth(self.dateOfBirthLine.text())
             self.user.setGroup(self.group.currentText())
             self.user.setSecretQuestion(self.question.currentText())
             self.user.setSecretAnswer(self.answerLine.text())

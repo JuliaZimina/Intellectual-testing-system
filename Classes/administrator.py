@@ -8,9 +8,10 @@ class Administrator(Analyst):
                  secret_answer, email, tel):
         super().__init__(login, password, name, surname, father_name, date_of_birth, group, secret_question,
                          secret_answer, email, tel)
+        
 
 
-#функции с вопросами переехали в аналитика 
+#функции с вопросами переехали в аналитика
     # добавила поле с причиной, user-это будет не объект, а логин этого юзера
     def block_user(self, login, reason):
         users[login]["ban"] = "True"

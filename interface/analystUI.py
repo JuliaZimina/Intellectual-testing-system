@@ -23,8 +23,7 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
         self.surnameLine.setText(self.user.getSurname())
         self.faternityLine.setText(self.user.getFatherName())
         self.passwordLineEdit.setText(self.user.getPassword())
-        date = self.user.getDateOfBirth()
-        self.dateOfBirth.setDate(QtCore.QDate(date.day, date.month, date.year))
+        self.dateOfBirthLine.setText(self.user.getDateOfBirth())
         question = [self.user.getSecretQuestion()]
         questions = question + [x for x in secret_questions if x != question[0]]
         self.question.addItems(questions)
@@ -39,7 +38,7 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
             self.user.setName(self.nameLine.text())
             self.user.setSurname(self.surnameLine.text())
             self.user.setFatherName(self.faternityLine.text())
-            self.user.setDateOfBirth(self.dateOfBirth.text())
+            self.user.setDateOfBirth(self.dateOfBirthLine.text())
             self.user.setGroup(self.group.currentText())
             self.user.setSecretQuestion(self.question.currentText())
             self.user.setSecretAnswer(self.answerLine.text())
@@ -74,7 +73,7 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
         self.groupsOfQuestionsBox.currentTextChanged.connect(self.changeQuestions)
 
         self.editQuestionButton.clicked.connect(self.openEditQuestionWindow)
-        '''
+
         self.deleteQuestionButton.clicked.connect(
             self.user.deleteQuestion(self.groupsOfQuestionsBox.currentText(), self.questionsComboBox.currentText()))
 
@@ -84,7 +83,7 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
         self.hideGroupOfQuestionsButton.clicked.connect(self.user.hideGroup(self.groupsOfQuestionsBox.currentText()))
         self.editQuestionButton.clicked.connect(self.openEditQuestionWindow)
         self.AddQuestionButton.clicked.connect(self.openAddQuestionWindow)
-    '''
+
 
     def changeQuestions(self):
         self.questionsComboBox.clear()

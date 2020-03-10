@@ -1,3 +1,5 @@
+from Classes.administrator import Administrator
+from Classes.user import User
 from interface.Windows.DialogWindows.changePasswordWindow import *
 from interface.Windows.DialogWindows.recoveryRequestWindow import Ui_RecoveryRequest
 from interface.Windows.DialogWindows.secretQuestionWindow import *
@@ -34,8 +36,9 @@ class LogInWin(QtWidgets.QMainWindow):
         try:
             #user = logIn(login, password)
             self.close()
-            self.Open = UserWin("user")
-            #self.Open = AdminWin("user")
+            user=Administrator("rat1122","890568901","Herman","Snitch","Syslikov","13.09.2000","18БИ1","f","q",'vasya@gmaol.com',"880000")
+            #self.Open = UserWin(user)
+            self.Open = AdminWin("user")
             self.Open.show()
             # открыть следующее окно
         except Exception as e:
