@@ -111,13 +111,13 @@ def changePassword(login, new_password):
 def logIn(login, password): # вход
 
     
-    if login not in user:
+    if login not in users:
         raise Exception("There are no such user")
     
     if users[login]['password'] != password:
         raise Exception("Wrong password")
         
-    if users[login]['status']:
+    if users[login]['ban']:
         raise Exception('The person is banned') 
   #возвращать должен объект user, данные смотрятся по в словаре по лоину и с помощью них создается
     return True
