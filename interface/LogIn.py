@@ -1,3 +1,5 @@
+from interface.Windows.DialogWindows.changePasswordWindow import *
+from interface.Windows.DialogWindows.recoveryRequestWindow import Ui_RecoveryRequest
 from interface.Windows.DialogWindows.secretQuestionWindow import *
 from interface.Windows.logInWindow import *
 #from Classes.registration import *
@@ -67,13 +69,49 @@ class SecretQuestionWin(QtWidgets.QMainWindow,Ui_SecretQuestionWindow):
             checkSecretAnswer(self.user.getLogin(), answer)
             self.openChangePasswordWindow()
         except Exception as e:
-            self.openMakeRecoveryRequestWindow()
+            self.openMakeRecoveryRequestWindow(self)
 
     def openMakeRecoveryRequestWindow(self):
-        pass
+        self.close()
+        self.Open=RecoveryRequestWin(self.user)
+        self.Open.show()
 
     def openChangePasswordWindow(self):
-        pass
+        self.close()
+        self.Open = ChangePasswordWin(self.user)
+        self.Open.show()
 
 
 
+class RecoveryRequestWin(QtWidgets.QMainWindow,Ui_RecoveryRequest):
+    def __init__(self,user, parent=None):
+        QtWidgets.QWidget.__init__(self, parent)
+        self.setupUi(self)
+        self.user=user
+        self.registerButton.clicked.connect(self.sendRecovery())
+
+    def sendRecovery(self):
+        recoveryRequest(login=self.user.getLogin(), password=self.passwordLine.text(), name=self.nameLine.text(),
+                     surname=self.surnameLine.text(), father_name=self.faternityLine.text(),
+                     date_of_birth=self.dateOfBirth.text(), group=self.group.currentText(),
+                     secret_question=self.question.currentText(), answer=self.answerLine.text(),
+                     email=self.emailLine.text(), tel=self.phoneLine.text())
+        self.close()
+
+
+class ChangePasswordWin(QtWidgets.QMainWindow,Ui_ChangePasswordWindow):
+
+    def __init__(self,user, parent=None):
+        QtWidgets.QWidget.__init__(self, parent)
+        self.setupUi(self)
+        self.user=user
+        self.resetPasswordButton.clicked.connect(self.changePassword)
+
+    def changePassword(self):
+        try:
+            changePassword(self.user.getLogin(),self.passwordLine.text())
+            self.close()
+            self.Open = LogInWin()
+            self.Open.show()
+        except Exception as e:
+            self.errorLabel.setText(str(e))

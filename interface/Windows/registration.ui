@@ -15,13 +15,10 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QFormLayout" name="formLayout">
-    <item row="0" column="0" colspan="2">
-     <widget class="QLabel" name="label">
-      <property name="styleSheet">
-       <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
-      </property>
+    <item row="2" column="1">
+     <widget class="QLabel" name="errorLabel">
       <property name="text">
-       <string>Регистрация</string>
+       <string/>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -66,7 +63,7 @@
      </widget>
     </item>
     <item row="6" column="1">
-     <widget class="QLineEdit" name="lineEdit_4"/>
+     <widget class="QLineEdit" name="surnameLine"/>
     </item>
     <item row="7" column="0">
      <widget class="QLabel" name="label_7">
@@ -92,13 +89,6 @@
      <widget class="QLabel" name="label_9">
       <property name="text">
        <string>Группа*</string>
-      </property>
-     </widget>
-    </item>
-    <item row="15" column="1">
-     <widget class="QPushButton" name="registerButton">
-      <property name="text">
-       <string>Подтвердить</string>
       </property>
      </widget>
     </item>
@@ -159,12 +149,18 @@
       </property>
      </widget>
     </item>
+    <item row="12" column="1">
+     <widget class="QLineEdit" name="emailLine"/>
+    </item>
     <item row="13" column="0">
      <widget class="QLabel" name="label_12">
       <property name="text">
        <string>Телефон</string>
       </property>
      </widget>
+    </item>
+    <item row="13" column="1">
+     <widget class="QLineEdit" name="phoneLine"/>
     </item>
     <item row="14" column="0">
      <widget class="QLabel" name="label_13">
@@ -173,12 +169,6 @@
       </property>
      </widget>
     </item>
-    <item row="12" column="1">
-     <widget class="QLineEdit" name="emailLine"/>
-    </item>
-    <item row="13" column="1">
-     <widget class="QLineEdit" name="phoneLine"/>
-    </item>
     <item row="14" column="1">
      <widget class="QPushButton" name="photoButton">
       <property name="text">
@@ -186,10 +176,20 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
-     <widget class="QLabel" name="errorLabel">
+    <item row="15" column="1">
+     <widget class="QPushButton" name="registerButton">
       <property name="text">
-       <string/>
+       <string>Подтвердить</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="2">
+     <widget class="QLabel" name="label">
+      <property name="styleSheet">
+       <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Регистрация</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>

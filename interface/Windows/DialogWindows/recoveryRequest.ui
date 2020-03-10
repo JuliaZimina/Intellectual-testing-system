@@ -77,7 +77,7 @@
      </widget>
     </item>
     <item row="5" column="1">
-     <widget class="QLineEdit" name="lineEdit_4"/>
+     <widget class="QLineEdit" name="surnameLine"/>
     </item>
     <item row="8" column="1">
      <widget class="QComboBox" name="group">
@@ -128,23 +128,7 @@
      <widget class="QLineEdit" name="phoneLine"/>
     </item>
     <item row="9" column="1">
-     <widget class="QComboBox" name="question">
-      <item>
-       <property name="text">
-        <string>Вопрос1</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Вопрос2</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Вопрос3</string>
-       </property>
-      </item>
-     </widget>
+     <widget class="QComboBox" name="question"/>
     </item>
     <item row="7" column="1">
      <widget class="QDateEdit" name="dateOfBirth"/>
