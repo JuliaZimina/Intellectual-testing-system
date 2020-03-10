@@ -20,8 +20,8 @@ class Test:
                         for i in self.ex_quest:
                             if i == j:
                                 continue
-                    self.ex_quest.append(tests[key][j])
-                    return tests[key][j]
+                        self.ex_quest.append(tests[key][j])
+                        return tests[key][j]
             else:
                 for j in tests[key]:
                     for i in self.ex_quest:
@@ -30,8 +30,8 @@ class Test:
                         else:
                             if len(self.ex_quest)%2 == 0:
                                 break
-                self.ex_quest.append(tests[key][j])
-                return tests[key][j]
+                    self.ex_quest.append(tests[key][j])
+                    return tests[key][j]
 
 #пользователь отправляет свой ответ
     def sendAnswer(self, answer, time):
