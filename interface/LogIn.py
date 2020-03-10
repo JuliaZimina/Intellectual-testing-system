@@ -38,7 +38,7 @@ class LogInWin(QtWidgets.QMainWindow):
             self.close()
             user=Administrator("rat1122","890568901","Herman","Snitch","Syslikov","13.09.2000","18БИ1","f","q",'vasya@gmaol.com',"880000")
             #self.Open = UserWin(user)
-            self.Open = AdminWin("user")
+            self.Open = AdminWin(user)
             self.Open.show()
             # открыть следующее окно
         except Exception as e:
