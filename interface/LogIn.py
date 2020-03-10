@@ -1,5 +1,4 @@
-
-
+from interface.Windows.DialogWindows.secretQuestionWindow import *
 from interface.Windows.logInWindow import *
 #from Classes.registration import *
 from interface.adminUI import *
@@ -9,27 +8,7 @@ from PyQt5 import QtWidgets
 
 from interface.userUI import *
 
-'''
-def clickable(widget):
-    class Filter(QObject):
 
-        clicked = pyqtSignal()
-
-    def eventFilter(self, obj, event):
-
-        if obj == widget:
-            if event.type() == QEvent.MouseButtonRelease:
-                if obj.rect().contains(event.pos()):
-                    self.clicked.emit()
-            # The developer can opt for .emit(obj) to get the object within the slot.
-                    return True
-
-        return False
-
-    filter = Filter(widget)
-    widget.installEventFilter(filter)
-    return filter.clicked
-'''
 
 
 class LogInWin(QtWidgets.QMainWindow):
@@ -76,6 +55,31 @@ class LogInWin(QtWidgets.QMainWindow):
         self.Open = RegistrationWin()
         self.Open.show()
 
+class SecretQuestionWin(QtWidgets.QMainWindow,Ui_SecretQuestionWindow):
+
+
+    def __init__(self,user, parent=None):
+        QtWidgets.QWidget.__init__(self, parent)
+        self.ui.setupUi(self)
+        self.user=user
+        self.secretQuestionLabel.setText(self.user.getSecretQuestion())
+
+
+        self.answerButton.clicked.connect(self.checkSecretAnswer)
+
+    def checkSecretAnswer(self):
+        answer = self.answerLine.text()
+        try:
+            checkSecretAnswer(self.user.getLogin(), answer)
+            self.openChangePasswordWindow()
+        except Exception as e:
+            self.openMakeRecoveryRequestWindow()
+
+    def openMakeRecoveryRequestWindow(self):
+        pass
+
+    def openChangePasswordWindow(self):
+        pass
 
 
 
