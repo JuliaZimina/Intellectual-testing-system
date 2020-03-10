@@ -15,11 +15,11 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
         QtWidgets.QWidget.__init__(self, parent)
         self.setupUi(self)
         self.user = user
-        self.testing()
-        self.userManager()
-        self.questionManager()
+        #self.testing()
+        #self.userManager()
+        #self.questionManager()
         self.statistics()
-        self.userInformation()
+        #self.userInformation()
         self.setFixedSize(650, 500)
 
     def userInformation(self):

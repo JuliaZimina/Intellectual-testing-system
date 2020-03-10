@@ -8,6 +8,7 @@ class Administrator(Analyst):
                  secret_answer, email, tel):
         super().__init__(login, password, name, surname, father_name, date_of_birth, group, secret_question,
                          secret_answer, email, tel)
+        
 
 
 #функции с вопросами переехали в аналитика
