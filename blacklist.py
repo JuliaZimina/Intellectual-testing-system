@@ -1,53 +1,58 @@
-import matplotlib
-
-matplotlib.use('Qt5Agg')
-from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
-import sys
-import seaborn as sns
-import pandas as pd
-import matplotlib.pyplot as plt
-from PyQt5 import QtCore, QtWidgets
-
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
-from matplotlib.figure import Figure
+# import ssms_su
+from Classes.analyst import *
+from dataProcessing import *
 
 
-class MplCanvas(FigureCanvasQTAgg):
+class Administrator(Analyst):
+    def __init__(self, login, password, name, surname, father_name, date_of_birth, group, secret_question,
+                 secret_answer, email, tel):
+        super().__init__(login, password, name, surname, father_name, date_of_birth, group, secret_question,
+                         secret_answer, email, tel)
 
-    def __init__(self, parent=None, width=5, height=4, dpi=100):
-        fig = Figure(figsize=(width, height), dpi=dpi)
-        self.axes = fig.add_subplot(111)
-        super(MplCanvas, self).__init__(fig)
+    def getStatistics(self):
+        return str(userStat)
 
+        # первый аргумент во всех методах класса всегда self
+        # удаляет вопрос из test+удаляет его из всей статистики
+    def deleteQuestion(self, group, question):
+        self.hideQuestion(group,question)
+        del genStat[group][question]
 
-def seabornplot():
-    g = sns.catplot(x="группа вопросов", y="количество отвечавших",
-                    data=pd.read_csv('Data/Ratings/groupStatistics.sys', sep=";"), height=6, kind="bar",
-                    hue='группа людей')
+    # удаляет только из списка вопросов
+    def hideQuestion(self, group, question):
+        del tests[group][question]
 
-    return g.fig
+    def hideGroup(self, group):
+        del tests[group]
 
-
-class MainWindow(QtWidgets.QMainWindow):
-
-    def __init__(self, *args, **kwargs):
-        super(MainWindow, self).__init__(*args, **kwargs)
-
-        # Create the maptlotlib FigureCanvas object,
-        # which defines a single set of axes as self.axes.
-        # sc = MplCanvas(self, width=5, height=4, dpi=100)
-        # sc.axes.plot([0,1,2,3,4], [10,1,20,3,40])
-        # self.setCentralWidget(sc)
-        self.fig = seabornplot()
-        plt.show()
-        self.canvas = FigureCanvas(self.fig)
-        self.canvas.draw()
-        #self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
+    # аналогично  с удалением вопроса
+    def deleteGroup(self, group):
+        self.hideGroup(group)
+        del genStat[group]
 
 
-        self.show()
+
+    # этот метод еще и в статистике должен менять вопрос
+    def editQuestion(self, old_group, old_question, new_group, new_question, answer, incorrectAnswers, time):
+        stats = genStat[old_group][old_question]
+        self.deleteQuestion(old_group,old_question)
+        genStat[new_group][new_question]=stats
+        self.addQuestion(new_group,new_question,answer,incorrectAnswers,time)
 
 
-app = QtWidgets.QApplication(sys.argv)
-w = MainWindow()
-app.exec_()
+        # добавить вопрос в tests
+    def addQuestion(self, new_group, new_question, answer, incorrectAnswers, time):
+        tests[new_group][new_question] = {'время': time, 'ответ': [answer] + incorrectAnswers}
+
+    # добавила поле с причиной, user-это будет не объект, а логин этого юзера
+    def block_user(self, login, reason):
+        users[login]["ban"] = "True"
+        # отправить сообщение
+
+    # user-login,new_role="user"/"analyst"
+    def roles(self,login, new_role):
+        users[login]["status"]=new_role
+
+    def return_access(self,login):
+        users[login]['ban'] = "False"
+        #отправить сообщение

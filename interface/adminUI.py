@@ -93,19 +93,16 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
         group = self.groupsOfQuestionsBox.currentText()
         self.questionsComboBox.addItems(tests[group].keys())
         self.groupsOfQuestionsBox.currentTextChanged.connect(self.changeQuestions)
-
         self.editQuestionButton.clicked.connect(self.openEditQuestionWindow)
-        '''
         self.deleteQuestionButton.clicked.connect(
             self.user.deleteQuestion(self.groupsOfQuestionsBox.currentText(), self.questionsComboBox.currentText()))
-        
         self.deleteGroupOfQuestionsButton.clicked.connect(self.user.deleteGroup(self.groupsOfQuestionsBox.currentText()))
         self.hideQuestionButton.clicked.connect(
             self.user.hideQuestion(self.groupsOfQuestionsBox.currentText(), self.questionsComboBox.currentText()))
         self.hideGroupOfQuestionsButton.clicked.connect(self.user.hideGroup(self.groupsOfQuestionsBox.currentText()))
         self.editQuestionButton.clicked.connect(self.openEditQuestionWindow)
         self.AddQuestionButton.clicked.connect(self.openAddQuestionWindow)
-    '''
+
 
     def changeQuestions(self):
         self.questionsComboBox.clear()
@@ -177,7 +174,7 @@ class EditQuestionWin(Ui_EditQuestionWindow, QtWidgets.QMainWindow):
         new_theme = self.themeLine.Text()
         new_question = self.questionLine.Text()
         answer = self.answerLine.Text()
-        incorrectAnswers = self.incorrectAnswersLine.Text(printIncorrectAnswers()).split(";")
+        incorrectAnswers = self.incorrectAnswersLine.Text().split(";")
         time = str(self.timespinBox.Value())
         if self.edit:
             self.admin.editQuestion(self.group, self.question, new_theme, new_question, answer, incorrectAnswers, time)
