@@ -7,7 +7,6 @@ class Test:
         self.field = field
         self.ex_quest = []
         self.number_of_quest = 5
-        self.end_of_test = False
         self.array_themes = []
         self.answers = []
 
@@ -63,6 +62,7 @@ class Test:
 
 test1=Test("История")
 print(test1.getNextQuestion())
+test1.sendAnswer("ggg",30)
 test2=Test("general")
 print("start")
 print(test2.getNextQuestion())

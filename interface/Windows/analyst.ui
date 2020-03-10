@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AnalyticsWindow</class>
- <widget class="QMainWindow" name="AnalyticsWindow">
+ <class>AdminWindow</class>
+ <widget class="QMainWindow" name="AdminWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>426</width>
-    <height>344</height>
+    <width>451</width>
+    <height>389</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -36,7 +36,7 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QComboBox" name="qustionThemeComboBox"/>
+         <widget class="QComboBox" name="questionThemeComboBox"/>
         </item>
         <item row="1" column="1">
          <widget class="QPushButton" name="themeTestButton">
@@ -76,8 +76,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>369</width>
-             <height>465</height>
+             <width>394</width>
+             <height>436</height>
             </rect>
            </property>
            <layout class="QFormLayout" name="formLayout_2">
@@ -97,6 +97,16 @@
                <string>Загрузить фото</string>
               </property>
              </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_5">
+              <property name="text">
+               <string>Пароль*</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLineEdit" name="passwordLineEdit"/>
             </item>
             <item row="3" column="0">
              <widget class="QLabel" name="label_7">
@@ -198,20 +208,6 @@
               </property>
              </widget>
             </item>
-            <item row="16" column="0" colspan="2">
-             <widget class="QPushButton" name="DeleteUser">
-              <property name="text">
-               <string>Удалить пользователя</string>
-              </property>
-             </widget>
-            </item>
-            <item row="17" column="0" colspan="2">
-             <widget class="QLabel" name="errorChangesLabel">
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
             <item row="15" column="0" colspan="2">
              <widget class="QLabel" name="label_2">
               <property name="text">
@@ -222,13 +218,10 @@
               </property>
              </widget>
             </item>
-            <item row="2" column="1">
-             <widget class="QLineEdit" name="passwordLineEdit"/>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="label_4">
+            <item row="16" column="0" colspan="2">
+             <widget class="QLabel" name="errorChangesLabel">
               <property name="text">
-               <string>Пароль*</string>
+               <string/>
               </property>
              </widget>
             </item>
@@ -256,8 +249,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>131</width>
-             <height>61</height>
+             <width>407</width>
+             <height>325</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -289,7 +282,17 @@
         <item>
          <widget class="QLabel" name="label_15">
           <property name="text">
-           <string>Список вопросов:</string>
+           <string>Группа вопросов:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="groupsOfQuestionsBox"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Список вопросов</string>
           </property>
          </widget>
         </item>
