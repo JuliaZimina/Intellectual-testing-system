@@ -35,13 +35,11 @@ class Test:
 
 # пользователь отправляет свой ответ
     def sendAnswer(self, answer, time):
-        d = self.ex_quest[1]
-        if answer != d['ответ'][0] or time > d['время'] or time <= 5:
+        d = self.ex_quest[-1]
+        if answer != d['ответ'][0]:
             self.answers.append(0)
-            if self.field != "general":
-                self.getNextQuestion(self.field)
-            else:
-                self.getNextQuestion(self.array_themes[len(self.array_themes)])
+        if (time > int(d['время']) or time <= 5 or answer != d['ответ'][0]) and self.number_of_quest < 10:
+            self.number_of_quest += 1
         else:
             self.answers.append(1)
 
@@ -49,11 +47,15 @@ class Test:
     def getResult(self):
         for i in range(len(self.ex_quest)-1):
              if self.answers[i] == 0:
-                print("Вопрос " + i + " отвечен неправильно")
+                print("Вопрос " + str(i) + " отвечен неправильно")
             else:
-                print("Вопрос " + i + " отвечен правильно")
-        print("Количество правильных ответов: " + self.answers.count(1) + " из " + len(self.answers))
-        print(int(self.answers.count(1)/len(self.answers*100)) + " процентов отвечено верно")
+                print("Вопрос " + str(i) + " отвечен правильно")
+        return "Количество правильных ответов: " + str(self.answers.count(1)) + " из " + str(len(self.answers)) + "\n" \
+               + str(int(self.answers.count(1)/len(self.answers*100))) + " процентов отвечено верно"
+
+    def endTest(self):
+        if self.number_of_quest == len(self.ex_quest):
+            return True
 
 
 test1=Test("История")
