@@ -45,13 +45,16 @@ class Test:
 
 
     def getResult(self):
+        st = ''
         for i in range(len(self.ex_quest)-1):
              if self.answers[i] == 0:
-                print("Вопрос " + str(i) + " отвечен неправильно")
-            else:
-                print("Вопрос " + str(i) + " отвечен правильно")
-        return "Количество правильных ответов: " + str(self.answers.count(1)) + " из " + str(len(self.answers)) + "\n" \
-               + str(int(self.answers.count(1)/len(self.answers*100))) + " процентов отвечено верно"
+                 st = st + "Вопрос " + str(i) + " отвечен неправильно\n"
+             else:
+                 st = st + "Вопрос " + str(i) + " отвечен правильно\n"
+        st = st + "Количество правильных ответов: " + str(self.answers.count(1)) + " из " + str(len(self.answers)) + "\n" \
+             + str(int(self.answers.count(1) / len(self.answers * 100))) + " процентов отвечено верно"
+        return st
+
 
     def endTest(self):
         if self.number_of_quest == len(self.ex_quest):
