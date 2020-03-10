@@ -3,15 +3,15 @@ from dataProcessing import *
 class Test:
     """Test model"""
 
-    def __init__(self, field, sum_right=0):
+    def __init__(self, field):
         self.field = field
-        self.sum_right = sum_right
         self.ex_quest = []
         self.number_of_quest = 5
         self.end_of_test = False
         self.array_themes = []
+        self.answers = []
 
-#генерирует следующий вопрос
+# генерирует следующий вопрос
     def getNextQuestion(self):
         for key in tests:
             if self.field != "general":
@@ -32,19 +32,29 @@ class Test:
                     self.ex_quest.append([j,tests[key][j]])
                     return [j,tests[key][j]]
 
-#пользователь отправляет свой ответ
+# пользователь отправляет свой ответ
     def sendAnswer(self, answer, time):
-
-        pass
+        d = self.ex_quest[1]
+        if answer != d['ответ'][0] or time > d['время']:
+            self.answers.append(0)
+            if self.field != "general":
+                self.getNextQuestion(self.field)
+            else:
+                self.getNextQuestion(self.array_themes[len(self.array_themes)])
+        else:
+            self.answers.append(1)
 
     def getResult(self):
-        pass
+        while len(self.ex_quest) != 0:
+            for i in range(len(self.ex_quest)-1):
+                if self.answers[i] == 0:
+                    print("Вопрос " + i + " отвечен неправильно")
+                else:
+                    print("Вопрос " + i + " отвечен правильно")
+
+
 test1=Test("История")
-print(test1.getNextQuestion())
-print(test1.getNextQuestion())
 print(test1.getNextQuestion())
 test2=Test("general")
 print(test2.getNextQuestion())
-print(test2.getNextQuestion())
-print(test2.getNextQuestion())
-print(test2.getNextQuestion())
+
