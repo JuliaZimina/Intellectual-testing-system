@@ -16,14 +16,17 @@ class QuestionWin(QtWidgets.QMainWindow, Ui_questionWindow):
         self.setupUi(self)
         self.theme = theme
         self.answers = ""
-        self.test()
+        try:
+            self.test()
+        except Exception as e:
+            print(str(e))
         #self.answerButton.clicked.connect(self.test)
 
     def test(self):
         current_test = Test(self.theme)
-        while not current_test.end_of_test():
+        while not current_test.endTest():
             start_time = datetime.now()
-            self.questionLabel.set(self.getNextQuestion(current_test))
+            self.questionLabel.setText(self.getNextQuestion(current_test))
             self.answerButton.clicked.connect(self.sendAnswer(current_test, start_time))
         self.close()
         self.Open = ResultWin(current_test)

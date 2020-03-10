@@ -144,3 +144,4 @@ userStat = read_users_statistics('Data/Ratings/usersPersonalStatistics.sys')
 print(userStat)
 print(groups_of_questions)
 secret_questions = ["f", "g"]
+gradeStat={}
