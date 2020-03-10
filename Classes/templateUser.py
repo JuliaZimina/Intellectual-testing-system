@@ -15,30 +15,6 @@ class TemplateUser:
         self.email = email
         self.tel = tel
 
-    def checkDateOfBirth(date_of_birth):
-        if date_of_birth == '':
-            return False
-        return True
-
-    def checkGroup(group):
-        if group == '':
-            return False
-        return True
-
-    def checkSecretAnswer(secret_answer):
-        if secret_answer == '':
-            return False
-        return True
-
-    def checkEmail(email):
-        if email == '':
-            return False
-        return True
-
-    def checkTel(tel):
-        if tel == '':
-            return False
-        return True
 
     def setLogin(self, new_login):
         if not checkLogin(new_login):
@@ -96,29 +72,29 @@ class TemplateUser:
             users[self.login]['father_name'] = new_fname
 
     def getPassword(self):
-        pass
+        return self.password
 
     def getName(self):
-        pass
+        return self.name
 
     def getSurname(self):
-        pass
+        return self.surname
 
     def getFatherName(self):
-        pass
+        return self.father_name
 
     def getDateOfBirth(self):
-        pass
+        return self.date_of_birth
 
     def getSecretQuestion(self):
-        pass
+        return self.secret_question
 
     def getSecretAnswer(self):
-        pass
+        return self.secret_answer
 
     def getEmail(self):
-        pass
+        return self.email
 
     def getPhoneNumber(self):
-        pass
+        return self.tel
     

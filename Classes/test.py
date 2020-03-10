@@ -56,5 +56,7 @@ class Test:
 test1=Test("История")
 print(test1.getNextQuestion())
 test2=Test("general")
+print("start")
+print(test2.getNextQuestion())
 print(test2.getNextQuestion())
 

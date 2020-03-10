@@ -1,3 +1,5 @@
+import datetime
+
 from Classes.templateUser import TemplateUser
 from interface.Windows.userWindow import *
 from PyQt5 import QtWidgets
@@ -45,6 +47,7 @@ class UserWin(QtWidgets.QMainWindow, Ui_UserWindow):
         self.surnameLine.setText(self.user.getSurname())
         self.faternityLine.setText(self.user.getFatherName())
         date = self.user.getDateOfBirth()
+        date=datetime.datetime.strptime(date, "%d.%m.%Y")
         self.dateOfBirth.setDate(QtCore.QDate(date.day, date.month, date.year))
         question = [self.user.getSecretQuestion()]
         questions = question + [x for x in secret_questions if x != question[0]]
@@ -70,7 +73,9 @@ class UserWin(QtWidgets.QMainWindow, Ui_UserWindow):
             self.user.setName(self.nameLine.text())
             self.user.setSurname(self.surnameLine.text())
             self.user.setFatherName(self.faternityLine.text())
-            self.user.setDateOfBirth(self.dateOfBirth.text())
+            temp_var = self.dateOfBirth.date()
+            temp_var = temp_var.toPyDate()
+            self.user.setDateOfBirth(str(temp_var))
             self.user.setGroup(self.group.currentText())
             self.user.setSecretQuestion(self.question.currentText())
             self.user.setSecretAnswer(self.answerLine.text())
