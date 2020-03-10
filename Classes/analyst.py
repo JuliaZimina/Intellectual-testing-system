@@ -1,5 +1,5 @@
 from Classes.templateUser import *
-from dataProcessing import userStat, genStat
+from dataProcessing import *
 
 
 class Analyst(TemplateUser):
@@ -14,7 +14,7 @@ class Analyst(TemplateUser):
         # удаляет вопрос из test+удаляет его из всей статистики
     def deleteQuestion(self, group, question):
         self.hideQuestion(group,question)
-        del genStat[group][question]
+        #del genStat[group][question]
 
     # удаляет только из списка вопросов
     def hideQuestion(self, group, question):
@@ -26,16 +26,17 @@ class Analyst(TemplateUser):
     # аналогично  с удалением вопроса
     def deleteGroup(self, group):
         self.hideGroup(group)
-        del genStat[group]
+        #del genStat[group]
 
 
 
     # этот метод еще и в статистике должен менять вопрос
     def editQuestion(self, old_group, old_question, new_group, new_question, answer, incorrectAnswers, time):
-        stats = genStat[old_group][old_question]
+        #stats = genStat[old_group][old_question]
         self.deleteQuestion(old_group,old_question)
-        genStat[new_group][new_question]=stats
+        #genStat[new_group][new_question]=stats
         self.addQuestion(new_group,new_question,answer,incorrectAnswers,time)
+        print(tests[new_group])
 
 
         # добавить вопрос в tests

@@ -48,7 +48,7 @@ class Test:
 
     def getResult(self):
         for i in range(len(self.ex_quest)-1):
-             if self.answers[i] == 0:
+            if self.answers[i] == 0:
                 print("Вопрос " + i + " отвечен неправильно")
             else:
                 print("Вопрос " + i + " отвечен правильно")
