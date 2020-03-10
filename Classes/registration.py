@@ -42,7 +42,7 @@ def checkNames(name):
 
 
 
-def registration(login,password,name,surname,father_name,date_of_birth,group,secret_question,secret_answer,email,tel,photo=""):
+def registration(login,password,name,surname,father_name,date_of_birth,group,secret_question,answer,email,tel,photo=""):
 
     if not checkLogin(login):
         raise Exception("Such name already exists")
@@ -62,7 +62,7 @@ def registration(login,password,name,surname,father_name,date_of_birth,group,sec
         raise Exception("This field is requried")
     
 
-    if not checkNames(mail):
+    if not checkNames(email):
         raise Exception("This field is requried")
     
     users[login] = {'password': password, 'status': 'regular_user', 'ban' : False, 'name' :  name, 'date_of_birth' : date_of_birth, 'tel':tel, 
@@ -76,7 +76,7 @@ def registration(login,password,name,surname,father_name,date_of_birth,group,sec
 
     
        
-def reestablishPassword_step1(login, answer):
+def checkSecretAnswer(login, answer):
     
     if answer != users[login]['secret_answer']:
         raise Exception("secret answer is wrong")
@@ -84,9 +84,10 @@ def reestablishPassword_step1(login, answer):
   
 
   
-def reestablishPassword_step2(login, new_password):
-    if new_password == users[login][password]:
+def changePassword(login, new_password):
+    if new_password == users[login]["password"]:
         raise Exception("New password shouldn't be equal to old one")
+    #в словаре изменить пароль еще нужно
     
     return True
  
@@ -103,11 +104,11 @@ def logIn(login, password): # вход
         
     if users[login]['status']:
         raise Exception('The person is banned') 
-
+  #возвращать должен объект user, данные смотрятся по в словаре по лоину и с помощью них создается
     return True
 
 
-
+#временный вход, это не для смены пароля, это функция которая создает объект юзера по логину, т.е. принимать должна только логин
 def tmpLogIn(login, old_password, new_password): #временный вход
     if login not in users:
        raise Exception("There are no such user")
