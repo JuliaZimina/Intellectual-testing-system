@@ -1,6 +1,6 @@
-import urllib
-import json
-import time
+#import urllib
+#import json
+#import time
 #from emal.massage import EmalMassage
 import smtplib
 from Classes.User import *
@@ -10,6 +10,7 @@ from dataProcessing import users,recovery_requests
 EMAIL = "zeiwjfew@yandex.ru"
 PASSWORD = "ooP123"
 
+'''
 def send_sms(phones, text, total_price=0):
     login = 'userlog'       # Логин в smsc
     password = 'myPas1'     # Пароль в smsc
@@ -39,6 +40,7 @@ def send_sms(phones, text, total_price=0):
         else:
             # СМС отправлен, ответ сервера
             return answer
+'''
 
 def checkLogin(login):
     
@@ -102,7 +104,7 @@ def registration(login,password,name,surname,father_name,date_of_birth,group,sec
     if not checkNames(email):
         raise Exception("The email is requried")
 
-    users[login] = {'password': password, 'status: 'user', 'ban': False, 'name' :  name, 'date_of_birth' : date_of_birth, 'tel':tel,
+    users[login] = {'password': password, 'status': 'user', 'ban': False, 'name' :  name, 'date_of_birth' : date_of_birth, 'tel':tel,
     'father_name' : father_name, 'surname' : surname, 'group' : group, 'secret_question' : secret_question, 'secret_answer' : answer, 'email' : email, 'photo' : photo}
 
 
@@ -156,7 +158,7 @@ def logIn(login, password): # вход
         
     if users[login]['ban']:
         raise Exception('The person is banned') 
-  return User(login, password, users[login][name], users[login][surname], 
+    return User(login, password, users[login][name], users[login][surname], 
               users[login][father_name], users[login][date_of_birth], users[login][group], users[login][secret_question], 
               users[login][secret_answer], users[login][email], users[login][tel])
 
