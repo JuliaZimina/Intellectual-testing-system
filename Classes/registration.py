@@ -43,7 +43,7 @@ def checkNames(name):
 
 
 def registration(login,password,name,surname,father_name,date_of_birth,group,secret_question,answer,email,tel,photo=""):
-
+ #на пустое тоже должен проверять
     if not checkLogin(login):
         raise Exception("Such name already exists")
 
@@ -51,7 +51,7 @@ def registration(login,password,name,surname,father_name,date_of_birth,group,sec
     if not checkPassword(password):
          raise Exception("Your password should be larger than 8")
 
-
+#подписать надо какое конкретно поле
     if not checkNames(name):
         raise Exception("This field is requried")
 
@@ -60,7 +60,6 @@ def registration(login,password,name,surname,father_name,date_of_birth,group,sec
 
     if not checkNames(answer):
         raise Exception("This field is requried")
-
 
     if not checkNames(email):
         raise Exception("This field is requried")

@@ -1,11 +1,13 @@
 from Classes.registration import *
 
-
+#login;password;status;ban;name,surname;father_name;date_of_birth;group;secret_question;secret_answer;email;tel
 class TemplateUser:
-    def __init__(self, login, password, name, date_of_birth, group, secret_question, secret_answer, email, tel):
+    def __init__(self, login, password, name,surname,father_name, date_of_birth, group, secret_question, secret_answer, email, tel):
         self.login = login
         self.password = password
         self.name = name
+        self.surname=surname
+        self.father_name=father_name
         self.date_of_birth = date_of_birth
         self.group = group
         self.secret_question = secret_question
@@ -23,8 +25,8 @@ class TemplateUser:
             return False
         return True
 
-    def checkSecretQuestion(secret_question):
-        if secret_question == '':
+    def checkSecretAnswer(secret_answer):
+        if secret_answer == '':
             return False
         return True
 
@@ -39,46 +41,84 @@ class TemplateUser:
         return True
 
     def setLogin(self, new_login):
-        if checkLogin(new_login):
-            users[login] = new_login
-        return users
+        if not checkLogin(new_login):
+            raise Exception("Such name already exists")
+        if not checkNames(new_login):
+            raise Exception("Login shouldn`t be empty")
+        users[self.login] = new_login
+        self.login=new_login
+
 
     def setPassword(self, new_password):
         if checkPassword(new_password):
-            users[login]['password'] = new_password
+            users[self.login]['password'] = new_password
         return users
 
     def setName(self, new_name):
         if checkNames(new_name):
-            users[login]['name'] = new_name
+            users[self.login]['name'] = new_name
         return users
 
     def setDateOfBirth(self, new_date_of_birth):
-        if checkDateOfBirth(new_date_of_birth):
-            users[login]['date_of_birth'] = new_date_of_birth
-        return users
+        if checkNames(new_date_of_birth):
+            users[self.login]['date_of_birth'] = new_date_of_birth
+
 
     def setGroup(self, new_group):
-        if checkGroup(new_group):
-            users[login]['group'] = new_group
-        return users
+        if checkNames(new_group):
+            users[self.login]['group'] = new_group
+
 
     def setSecretQuestion(self, new_secret_question):
-        if checkSecretQuestion(new_secret_question):
-            users[login]['secret_question'] = new_secret_question
-        return users
+        if checkNames(new_secret_question):
+            users[self.login]['secret_question'] = new_secret_question
+
 
     def setSecretAnswer(self, new_secret_answer):
-        if checkSecretAnswer(login, answer):
-            users[login]['secret_answer'] = new_secret_answer
-        return users
+        if checkNames(new_secret_answer):
+            users[self.login]['secret_answer'] = new_secret_answer
 
     def setEmail(self, new_email):
-        if checkEmail(new_email):
-            users[login]['email'] = new_email
-        return users
+        if checkNames(new_email):
+            users[self.login]['email'] = new_email
 
-    def setTel(self, new_tel):
-        if checkTel(new_tel):
-            users[login]['tel'] = new_tel
-        return users
+
+    def setPhoneNumber(self, new_tel):
+        if checkNames(new_tel):
+            users[self.login]['tel'] = new_tel
+
+    def setSurname(self, new_surname):
+        if checkNames(new_surname):
+            users[self.login]['surname'] = new_surname
+            
+    def setFatherName(self, new_fname):
+        if checkNames(new_fname):
+            users[self.login]['father_name'] = new_fname
+
+    def getPassword(self):
+        pass
+
+    def getName(self):
+        pass
+
+    def getSurname(self):
+        pass
+
+    def getFatherName(self):
+        pass
+
+    def getDateOfBirth(self):
+        pass
+
+    def getSecretQuestion(self):
+        pass
+
+    def getSecretAnswer(self):
+        pass
+
+    def getEmail(self):
+        pass
+
+    def getPhoneNumber(self):
+        pass
+    

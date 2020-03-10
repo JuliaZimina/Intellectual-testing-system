@@ -1,6 +1,7 @@
+from Classes.templateUser import TemplateUser
 from interface.Windows.userWindow import *
 from PyQt5 import QtWidgets
-
+from dataProcessing import *
 from interface.questionWindowUI import QuestionWin
 
 
@@ -36,11 +37,7 @@ class UserWin(QtWidgets.QMainWindow, Ui_UserWindow):
     def openGeneralQuestionWindow(self):
         self.Open = QuestionWin("general")
         self.Open.show()
-    def plot(self):
-        sns.catplot(x="группа вопросов", y="количество правильных",
-                    data=pd.read_csv('../Data/Ratings/groupStatistics.sys', sep=";"), height=6, kind="bar",
-                    hue='группа людей')
-        self.draw()
+
 
     def userInformation(self):
         self.passwordlineEdit.setText(self.user.getPassword())
@@ -68,7 +65,8 @@ class UserWin(QtWidgets.QMainWindow, Ui_UserWindow):
 
     def makeChanges(self):
         try:
-            self.user.setPassword(self.passwordLineEdit.text())
+
+            self.user.setPassword(self.passwordlineEdit.text())
             self.user.setName(self.nameLine.text())
             self.user.setSurname(self.surnameLine.text())
             self.user.setFatherName(self.faternityLine.text())
