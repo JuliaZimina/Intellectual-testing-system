@@ -32,10 +32,11 @@ class Test:
                     self.ex_quest.append([j,tests[key][j]])
                     return [j,tests[key][j]]
 
+
 # пользователь отправляет свой ответ
     def sendAnswer(self, answer, time):
         d = self.ex_quest[1]
-        if answer != d['ответ'][0] or time > d['время']:
+        if answer != d['ответ'][0] or time > d['время'] or time <= 5:
             self.answers.append(0)
             if self.field != "general":
                 self.getNextQuestion(self.field)
@@ -44,6 +45,7 @@ class Test:
         else:
             self.answers.append(1)
 
+
     def getResult(self):
         while len(self.ex_quest) != 0:
             for i in range(len(self.ex_quest)-1):
@@ -51,6 +53,8 @@ class Test:
                     print("Вопрос " + i + " отвечен неправильно")
                 else:
                     print("Вопрос " + i + " отвечен правильно")
+            print("Количество правильных ответов: " + self.answers.count(1) + " из " + len(self.answers))
+            print(int(self.answers.count(1)/len(self.answers*100)) + " процентов отвечено верно")
 
 
 test1=Test("История")
