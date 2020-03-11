@@ -6,7 +6,7 @@ from interface.Windows.editQuestionWindow import *
 from interface.questionWindowUI import QuestionWin
 
 
-class AnalystWin(Ui_AnalyticsWindow, QtWidgets.QMainWindow):
+class AnalystWin(Ui_AnalystWindow, QtWidgets.QMainWindow):
 
     def __init__(self, user, parent=None):
         QtWidgets.QWidget.__init__(self, parent)

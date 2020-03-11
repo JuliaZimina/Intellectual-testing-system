@@ -7,12 +7,15 @@ class User(TemplateUser):
         super().__init__(login, password, name,surname,father_name, date_of_birth, group, secret_question, secret_answer, email, tel)
 
     def getStatistics(self):
-        return str(userStat[self.login])
+        if self.login in userStat.keys():
+            return str(userStat[self.login])
+        return "None"
 
     def getGeneralTestCounter(self):
         count = 0
-        for test in userStat[self.login]:
-            if "general" in test:
-                count += 1
+        if self.login in userStat.keys():
+            for test in userStat[self.login]:
+                if "general" in test:
+                    count += 1
         return count
 

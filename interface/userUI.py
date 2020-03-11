@@ -13,6 +13,7 @@ class UserWin(QtWidgets.QMainWindow, Ui_UserWindow):
 
     def __init__(self, current_user, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
+        print("use win")
         self.user = current_user
         self.setupUi(self)
         self.testing()

@@ -6,6 +6,7 @@ from interface.Windows.DialogWindows.secretQuestionWindow import *
 from interface.Windows.logInWindow import *
 #from Classes.registration import *
 from interface.adminUI import *
+from interface.analystUI import *
 from interface.registrationUI import *
 
 from PyQt5 import QtWidgets
@@ -20,6 +21,7 @@ class LogInWin(QtWidgets.QMainWindow):
 
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
+        print("logIn")
         self.ui = Ui_LogIn()
         self.ui.setupUi(self)
         self.setFixedSize(500, 500)
@@ -34,15 +36,20 @@ class LogInWin(QtWidgets.QMainWindow):
         login = self.ui.loginLine.text()
         password = self.ui.passwordLine.text()
         try:
-            #user = logIn(login, password)
+            user = logIn(login, password)
             self.close()
-            user=Administrator("rat1122","890568901","Herman","Snitch","Syslikov","13.09.2000","18БИ1","f","q",'vasya@gmaol.com',"880000")
-            print(type(user)==Administrator)
-            #self.Open = UserWin(user)
-            self.Open = AdminWin(user)
+            #user=Administrator("abc","890568901","Herman","Snitch","Syslikov","13.09.2000","18БИ1","f","q",'vasya@gmaol.com',"880000")
+            if type(user)==Administrator:
+                self.Open = AdminWin(user)
+            if type(user) == User:
+                self.Open = UserWin(user)
+            if type(user) == Analyst:
+                self.Open = AnalystWin(user)
+
             self.Open.show()
             # открыть следующее окно
         except Exception as e:
+            print(e)
             self.ui.errorLabel.setText(str(e))
             self.attempts += 1
             if self.attempts > 3:
@@ -70,10 +77,11 @@ class SecretQuestionWin(QtWidgets.QMainWindow,Ui_SecretQuestionWindow):
     def checkSecretAnswer(self):
         answer = self.answerLine.text()
         try:
+            print("secret question")
             checkSecretAnswer(self.user.getLogin(), answer)
             self.openChangePasswordWindow()
         except Exception as e:
-            self.openMakeRecoveryRequestWindow(self)
+            self.openMakeRecoveryRequestWindow()
 
     def openMakeRecoveryRequestWindow(self):
         self.close()

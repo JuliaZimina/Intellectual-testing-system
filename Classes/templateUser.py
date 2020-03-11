@@ -1,4 +1,4 @@
-
+from dataProcessing import *
 #login;password;status;ban;name,surname;father_name;date_of_birth;group;secret_question;secret_answer;email;tel
 class TemplateUser:
     def __init__(self, login, password, name,surname,father_name, date_of_birth, group, secret_question, secret_answer, email, tel):
@@ -28,6 +28,7 @@ class TemplateUser:
         if not checkPassword(new_password):
             raise Exception("Пароль должен быть длинее 8 символов")
         if not checkNames(new_password):
+            print(new_password)
             raise Exception("Password shouldn`t be empty")
         users[self.login]['password'] = new_password
         self.password=new_password
@@ -43,7 +44,6 @@ class TemplateUser:
         if checkNames(new_date_of_birth):
             users[self.login]['date_of_birth'] = new_date_of_birth
             self.date_of_birth=new_date_of_birth
-            raise Exception("Password shouldn`t be empty")
         else:
             raise Exception("Date of birth shouldn`t be empty")
 
@@ -86,6 +86,8 @@ class TemplateUser:
     def setFatherName(self, new_fname):
         users[self.login]['father_name'] = new_fname
         self.father_name=new_fname
+    def getLogin(self):
+        return self.login
 
     def getPassword(self):
         return self.password
@@ -116,6 +118,7 @@ class TemplateUser:
 
     def deleteUser(self):
         del users[self.login]
+
 def checkLogin(login):
     if login in users:
         return False
@@ -126,6 +129,6 @@ def checkPassword(password):
         return False
     return True
 def checkNames(name):
-    if name == '':
+    if not name:
         return False
     return True

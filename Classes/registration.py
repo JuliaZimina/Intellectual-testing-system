@@ -46,10 +46,6 @@ def send_sms(phones, text, total_price=0):
             return answer
 '''
 
-
-
-
-
 '''
 def sendMessage(text, mail):
     msg = EmailMassage()
@@ -64,11 +60,9 @@ def sendMessage(text, mail):
 '''
 
 
-
-
-
 def registration(login, password, name, surname, father_name, date_of_birth, group, secret_question, answer, email, tel,
                  photo=""):
+
     if not checkLogin(login):
         raise Exception("Such name already exists")
 
@@ -93,7 +87,8 @@ def registration(login, password, name, surname, father_name, date_of_birth, gro
     if not checkNames(email):
         raise Exception("The email is requried")
 
-    users[login] = {'password': password, 'status': 'user', 'ban': 'False', 'name': name, 'date_of_birth': date_of_birth,
+    users[login] = {'password': password, 'status': 'user', 'ban': 'False', 'name': name,
+                    'date_of_birth': date_of_birth,
                     'tel': tel,
                     'father_name': father_name, 'surname': surname, 'group': group, 'secret_question': secret_question,
                     'secret_answer': answer, 'email': email, 'photo': photo}
@@ -133,6 +128,7 @@ def changePassword(login, new_password):
 
 
 def logIn(login, password):  # вход
+    print("LG func")
 
     if login not in users:
         raise Exception("There are no such user")
@@ -140,15 +136,17 @@ def logIn(login, password):  # вход
     if users[login]['password'] != password:
         raise Exception("Wrong password")
 
-    if users[login]['ban']:
+    if users[login]['ban']=="True":
         raise Exception('The person is banned')
 
     if users[login]['status'] == 'user':
+        print("userLG")
         return User(login, password, users[login]['name'], users[login]['surname'],
                     users[login]['father_name'], users[login]['date_of_birth'], users[login]['group'],
                     users[login]['secret_question'],
                     users[login]['secret_answer'], users[login]['email'], users[login]['tel'])
-    elif users[login]['status'] == 'analyst':
+
+    if users[login]['status'] == 'analyst':
         return Analyst(login, password, users[login]['name'], users[login]['surname'],
                        users[login]['father_name'], users[login]['date_of_birth'], users[login]['group'],
                        users[login]['secret_question'],

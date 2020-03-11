@@ -128,7 +128,12 @@ def read_group_statistic(file):
     else:
         return data
 
-
+def write_standard(file, data):
+    print("rewriting")
+    f = open(file, 'w')
+    for x, y in zip(data.keys(), data.values()):
+        f.write(str(x) + ';' + str(y) + '\n')
+    f.close()
 # login;password;status;ban;name,surname;father_name;date_of_birth;group;secret_question;secret_answer;email;tel
 users = read_users_info('Data/UsersInfo/users.sys')
 print(users)

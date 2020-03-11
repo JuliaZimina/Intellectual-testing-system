@@ -1,5 +1,5 @@
+from interface.LogIn import *
 from interface.Windows.registrationWindow import *
-#from interface.LogIn import *
 from Classes.registration import *
 
 from PyQt5 import QtWidgets
@@ -11,7 +11,10 @@ class RegistrationWin(QtWidgets.QMainWindow, Ui_RegistrationWindow):
         QtWidgets.QWidget.__init__(self, parent)
         self.setupUi(self)
         # self.setFixedSize(500, 500)
-        self.registerButton.clicked.connect(self.registrationUI)
+        try:
+            self.registerButton.clicked.connect(self.registrationUI)
+        except Exception as e:
+            print(str(e))
 
     def registrationUI(self):
 
@@ -22,8 +25,12 @@ class RegistrationWin(QtWidgets.QMainWindow, Ui_RegistrationWindow):
                          date_of_birth=self.dateOfBirth.text(), group=self.group.currentText(),
                          secret_question=self.question.currentText(), answer=self.answerLine.text(),
                          email=self.emailLine.text(), tel=self.phoneLine.text())
+            self.close()
+            Open = LogInWin()
+            Open.show()
 
         except Exception as e:
             self.errorLabel.setText(str(e))
-        self.close()
+            print(e)
+
         #открыть окно вы зарегистрированы
