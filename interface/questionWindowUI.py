@@ -19,7 +19,7 @@ class QuestionWin(QtWidgets.QMainWindow, Ui_questionWindow):
         self.current_test=Test(self.theme,user)
         self.start_time=datetime.now()
         self.answerButton.clicked.connect(self.sendAnswer)
-        self.setFixedSize(1200, 500)
+        #self.setFixedSize(1200, 500)
         try:
             self.test()
         except Exception as e:

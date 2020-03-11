@@ -23,24 +23,24 @@ def read_tests(file):
                     if a not in data.keys():
                         data[a] = {c[0]: {'время': c[1], 'ответ': c[2:]}}
                     else:
-                        tmp=data[a]
-                        tmp[c[0]]={'время': c[1], 'ответ': c[2:]}
-                        data[a]=tmp
+                        tmp = data[a]
+                        tmp[c[0]] = {'время': c[1], 'ответ': c[2:]}
+                        data[a] = tmp
         # print(data)
         return data
     else:
         return data
 
 
-def printIncorrectAnswers(group,question):
-    answers=[tests[group][question]["ответ"][i] for i in range(1,len(tests[group][question]["ответ"]))]
+def printIncorrectAnswers(group, question):
+    answers = [tests[group][question]["ответ"][i] for i in range(1, len(tests[group][question]["ответ"]))]
     return ";".join(answers)
 
 
 def read_users_statistics(file):
     data = {}
     if not file_is_empty(file):
-        with open(file,encoding='utf-8') as f:
+        with open(file, encoding='utf-8') as f:
             for line in f:
                 if len(line.split(';')) != 1:
                     a, *b = line.split(';')
@@ -53,6 +53,7 @@ def read_users_statistics(file):
         return data
     else:
         return data
+
 
 def read_users_info(file):
     data = {}
@@ -75,11 +76,14 @@ def read_users_info(file):
     else:
         return data
 
+
 def printUserInfo(users):
     string = ""
     for key in users.keys():
-        string = string + "login:" + key + ", " + str(users[key]).replace("{", "").replace("}", "").replace("'","")+"\n"
+        string = string + "login:" + key + ", " + str(users[key]).replace("{", "").replace("}", "").replace("'",
+                                                                                                            "") + "\n"
     return string
+
 
 def read_general_statistics(file):
     data = {}
@@ -128,26 +132,29 @@ def read_group_statistic(file):
     else:
         return data
 
+
 def read_grade_statistic(file):
-    data={}
-    firstLine=True
-    themes=[]
+    data = {}
+    firstLine = True
+    themes = []
     with open(file, encoding='utf-8') as f:
         for line in f:
-            if len(line.split(';'))!=1:
+            if len(line.split(';')) != 1:
                 a, *b = line.split(';')
                 b = [x.rstrip() for x in b]
                 if firstLine:
-                    themes=b[1:]
-                data[a]={'group':b[0]}
-                i=1
+                    themes = b[1:]
+                data[a] = {'group': b[0]}
+                i = 1
                 for theme in themes:
-                    data[a].update({theme:b[i]})
-                    i+=1
+                    data[a].update({theme: b[i]})
+                    i += 1
+            firstLine=False
     return data
 
+
 def read_secret_questions(file):
-    data=[]
+    data = []
     with open(file, encoding='utf-8') as f:
         for line in f:
             data.append(line.rstrip())
@@ -160,57 +167,77 @@ def write_standard(file, data):
     for x, y in zip(data.keys(), data.values()):
         f.write(str(x) + ';' + str(y) + '\n')
     f.close()
-def write_users_info(file,data):
-    with open(file,'w', encoding='utf-8') as f:
+
+
+def write_users_info(file, data):
+    with open(file, 'w', encoding='utf-8') as f:
         for user in data.keys():
-            str=[]
+            str = []
             str.append(user)
             key_words = "password;status;ban;name;surname;father_name;date_of_birth;group;secret_question;secret_answer;email;tel".split(
                 ";")
             for key_word in key_words:
                 str.append(users[user][key_word])
-            string=""
-            for i in range(len(str)-1):
-                string=string+str[i]+";"
-            string=string+str[-1]
-            f.write(string+"\n")
-def write_group_stat(file,data):
+            string = ""
+            for i in range(len(str) - 1):
+                string = string + str[i] + ";"
+            string = string + str[-1]
+            f.write(string + "\n")
+
+
+def write_group_stat(file, data):
     with open(file, 'w', encoding='utf-8') as f:
         for group in data.keys():
-            string=group+";"
+            string = group + ";"
             for theme in data[group].keys():
-                full_string=""
-                full_string+=string+theme+";"+data[group][theme][0]+";"+data[group][theme][1]+"\n"
+                full_string = ""
+                full_string += string + theme + ";" + data[group][theme][0] + ";" + data[group][theme][1] + "\n"
                 f.write(full_string)
-def write_tests(file,data):
+def write_personal_stat(file, data):
+    with open(file, 'w', encoding='utf-8') as f:
+        for user in data.keys():
+            string=user+";"
+            i=0
+            for el in data[user]:
+                i+=1
+                string=string+el[0]+":"+el[1]
+                if i!=len(data[user]):
+                    string+=";"
+            f.write(string+"\n")
+
+
+def write_tests(file, data):
     with open(file, 'w', encoding='utf-8') as f:
         for group in data.keys():
             for q in data[group].keys():
-                string=group+";"+q+";"+data[group][q]["время"]+";"+";".join(data[group][q]["ответ"])+"\n"
+                string = group + ";" + q + ";" + data[group][q]["время"] + ";" + ";".join(
+                    data[group][q]["ответ"]) + "\n"
                 f.write(string)
-def write_grade_stat(file,data):
+
+
+def write_grade_stat(file, data):
     with open(file, 'w', encoding='utf-8') as f:
         for user in data.keys():
-            string=user+";"+data[user]["group"]+";"
-            if user=="логин":
-                string+=";".join(groups_of_questions)+"\n"
+            string = user + ";" + data[user]["group"] + ";"
+            if user == "логин":
+                string += ";".join(groups_of_questions) + "\n"
                 f.write(string)
                 continue
             for theme in groups_of_questions:
                 if theme in data[user].keys():
-                    string+=data[user][theme]+";"
+                    string += data[user][theme] + ";"
                 else:
-                    string += "не проходил"+";"
-            f.write(string+"\n")
+                    string += "не проходил" + ";"
+            f.write(string + "\n")
 
 
 users = read_users_info('Data/UsersInfo/users.sys')
 print(users)
-recovery_requests=read_users_info('Data/UsersInfo/passwordRequests.sys')
+recovery_requests = read_users_info('Data/UsersInfo/passwordRequests.sys')
 tests = read_tests('Data/Content/tests.sys')
 print(tests)
-#genStat = read_general_statistics('Data/Ratings/generalQuestionsStatistics.sys')
-#print(genStat)
+# genStat = read_general_statistics('Data/Ratings/generalQuestionsStatistics.sys')
+# print(genStat)
 groupStat = read_group_statistic('Data/Ratings/groupStatistics.sys')
 print(groupStat)
 userStat = read_users_statistics('Data/Ratings/usersPersonalStatistics.sys')
@@ -218,8 +245,6 @@ print(userStat)
 print(groups_of_questions)
 secret_questions = read_secret_questions('Data/Content/secretQuestions.sys')
 print(secret_questions)
-gradeStat=read_grade_statistic('Data/Ratings/usersGradeStatistics.sys')
+gradeStat = read_grade_statistic('Data/Ratings/usersGradeStatistics.sys')
 print(gradeStat)
-
-
 

@@ -102,12 +102,13 @@ def registration(login, password, name, surname, father_name, date_of_birth, gro
 def recoveryRequest(login, password, name, surname, father_name, date_of_birth, group, secret_question, answer, email,
                     tel,
                     photo=""):
+
     recovery_requests[login] = {'password': password, 'status': 'user', 'ban': 'True', 'name': name,
                                 'date_of_birth': date_of_birth, 'tel': tel,
                                 'father_name': father_name, 'surname': surname, 'group': group,
                                 'secret_question': secret_question,
-                                'secret_answer': answer, 'email': email, 'photo': photo}
-    users["ban"]="True"
+                                'secret_answer': answer, 'email': email}
+    users[login]["ban"]="True"
 
     # sendMessage('ваш запрос на восстановление оптравлен', email)
 

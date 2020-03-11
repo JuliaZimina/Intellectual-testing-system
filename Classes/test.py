@@ -30,8 +30,7 @@ class Test:
         print(userStat)
         print(gradeStat)
 
-# генерирует следующий вопрос
-    def getNextQuestion(self):
+    def checkPenalty(self):
         if self.general_penalty and self.array_themes.count(self.array_themes[-1]) < 3:
             key=self.array_themes[-1]
             for j in tests[key]:
@@ -40,26 +39,40 @@ class Test:
                 self.ex_quest.append([j, tests[key][j]])
                 self.general_penalty=False
                 return [j, tests[key][j]]
+        return False
+    def themeTest(self):
         for key in tests:
-            if self.field != "general":
-                if key == self.field:
-                    for j in tests[key]:
-                        if [j,tests[key][j]] in self.ex_quest:
-                            continue
-                        self.ex_quest.append([j,tests[key][j]])
-                        print("ex_q", self.ex_quest)
-                        return [j,tests[key][j]]
-            else:
+            if key == self.field:
                 for j in tests[key]:
-                    if [j, tests[key][j]] in self.ex_quest:
+                    if [j,tests[key][j]] in self.ex_quest:
                         continue
-                    elif self.array_themes.count(key) == 2:
-                        break
-                    self.array_themes.append(key)
-                    #self.array_themes.append([j,tests[key][j]])
                     self.ex_quest.append([j,tests[key][j]])
-
+                    print("ex_q", self.ex_quest)
                     return [j,tests[key][j]]
+    def generalTest(self):
+        for key in tests:
+            for j in tests[key]:
+                if [j, tests[key][j]] in self.ex_quest:
+                    continue
+                elif self.array_themes.count(key) == 2:
+                    break
+                self.array_themes.append(key)
+                self.ex_quest.append([j, tests[key][j]])
+
+                return [j, tests[key][j]]
+
+
+
+# генерирует следующий вопрос
+    def getNextQuestion(self):
+        question=self.checkPenalty()
+        if question:
+            return question
+        if self.field!="general":
+            return self.themeTest()
+        else:
+            return self.generalTest()
+
 
 
 # пользователь отправляет свой ответ
@@ -70,7 +83,7 @@ class Test:
             self.answers.append(0)
         else:
             self.answers.append(1)
-        if (time > int(d['время']) or time <= 1 or answer != d['ответ'][0]) and self.number_of_quest < 5:
+        if (time > int(d['время']) or time <= 1 or answer != d['ответ'][0]) and self.number_of_quest < 10:
             self.number_of_quest += 1
             if self.field=="general":
                 self.general_penalty=True

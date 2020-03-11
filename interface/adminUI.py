@@ -8,6 +8,7 @@ from dataProcessing import *
 
 from interface.Windows.editQuestionWindow import *
 from interface.questionWindowUI import QuestionWin
+from statistics import drawGraphics
 
 
 class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
@@ -141,13 +142,17 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
         self.Open.show()
 
     def openGraphicsWindow(self):
-        pass
+        try:
+            drawGraphics()
+        except Exception as e:
+            print(e)
+
     def closeEvent(self, event):
-        write_users_info('Data/UsersInfo/users1.sys', users)
-        write_users_info('Data/UsersInfo/passwordRequests1.sys', recovery_requests)
-        write_group_stat('Data/Ratings/groupStatistics1.sys', groupStat)
-        write_tests('Data/Content/tests1.sys', tests)
-        write_grade_stat('Data/Ratings/usersGradeStatistics1.sys', gradeStat)
+        write_users_info('Data/UsersInfo/users.sys', users)
+        write_users_info('Data/UsersInfo/passwordRequests.sys', recovery_requests)
+        write_group_stat('Data/Ratings/groupStatistics.sys', groupStat)
+        write_tests('Data/Content/tests.sys', tests)
+        write_grade_stat('Data/Ratings/usersGradeStatistics.sys', gradeStat)
 
 
 
