@@ -14,6 +14,8 @@ class RegistrationWin(QtWidgets.QMainWindow, Ui_RegistrationWindow):
         # self.setFixedSize(500, 500)
         try:
             self.registerButton.clicked.connect(self.registrationUI)
+            self.question.clear()
+            self.question.addItems(secret_questions)
         except Exception as e:
             print(str(e))
 
@@ -30,8 +32,10 @@ class RegistrationWin(QtWidgets.QMainWindow, Ui_RegistrationWindow):
             self.Open = MessageWin("Вы успешно зарегистрировались")
             self.Open.show()
 
+
         except Exception as e:
             self.errorLabel.setText(str(e))
             print(e)
 
-        #открыть окно вы зарегистрированы
+    def closeEvent(self, event):
+        write_users_info('Data/UsersInfo/users.sys', users)

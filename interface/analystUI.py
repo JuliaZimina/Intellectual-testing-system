@@ -119,6 +119,13 @@ class AnalystWin(Ui_AnalystWindow, QtWidgets.QMainWindow):
         self.Open = EditQuestionWin(False, self.user)
         self.Open.show()
 
+    def closeEvent(self, event):
+        write_users_info('Data/UsersInfo/users.sys', users)
+        write_users_info('Data/UsersInfo/passwordRequests.sys', recovery_requests)
+        write_group_stat('Data/Ratings/groupStatistics.sys', groupStat)
+        write_tests('Data/Content/tests.sys', tests)
+        write_grade_stat('Data/Ratings/usersGradeStatistics.sys', gradeStat)
+
     def openGraphicsWindow(self):
         pass
 

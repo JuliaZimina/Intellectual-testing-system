@@ -1,16 +1,11 @@
-import sys
-from Classes.administrator import *
-from Classes.user import User
+#from Classes.registration import *
 from interface.Windows.DialogWindows.changePasswordWindow import *
-from interface.Windows.DialogWindows.recoveryRequestWindow import Ui_RecoveryRequest
 from interface.Windows.DialogWindows.secretQuestionWindow import *
 from interface.Windows.logInWindow import *
-#from Classes.registration import *
+from interface.Windows.recoveryRequestWindow import *
 from interface.adminUI import *
 from interface.analystUI import *
 from interface.registrationUI import *
-
-from PyQt5 import QtWidgets
 
 from interface.userUI import *
 
@@ -66,7 +61,7 @@ class LogInWin(QtWidgets.QMainWindow):
         self.Open.show()
 
     def closeEvent(self, event):
-        write_users_info('Data/UsersInfo/users1.sys', users)
+        write_users_info('Data/UsersInfo/users.sys', users)
 
 class SecretQuestionWin(QtWidgets.QMainWindow,Ui_SecretQuestionWindow):
 
@@ -97,8 +92,8 @@ class SecretQuestionWin(QtWidgets.QMainWindow,Ui_SecretQuestionWindow):
         self.Open = ChangePasswordWin(self.user)
         self.Open.show()
     def closeEvent(self, event):
-        write_users_info('Data/UsersInfo/users1.sys', users)
-        write_users_info('Data/UsersInfo/passwordRequests1.sys', recovery_requests)
+        write_users_info('Data/UsersInfo/users.sys', users)
+        write_users_info('Data/UsersInfo/passwordRequests.sys', recovery_requests)
 
 
 
@@ -108,21 +103,25 @@ class RecoveryRequestWin(QtWidgets.QMainWindow,Ui_RecoveryRequest):
         self.setupUi(self)
         self.user=user
         self.registerButton.clicked.connect(self.sendRecovery)
+        self.question.clear()
+        self.question.addItems(secret_questions)
 
     def sendRecovery(self):
-        recoveryRequest(login=self.user.getLogin(), password=self.passwordLine.text(), name=self.nameLine.text(),
-                     surname=self.surnameLine.text(), father_name=self.faternityLine.text(),
-                     date_of_birth=self.dateOfBirth.text(), group=self.group.currentText(),
-                     secret_question=self.question.currentText(), answer=self.answerLine.text(),
-                     email=self.emailLine.text(), tel=self.phoneLine.text())
-        self.close()
+        try:
+            recoveryRequest(login=self.user.getLogin(), password=self.passwordLine.text(), name=self.nameLine.text(),
+                         surname=self.surnameLine.text(), father_name=self.faternityLine.text(),
+                         date_of_birth=self.dateOfBirth.text(), group=self.group.currentText(),
+                         secret_question=self.question.currentText(), answer=self.answerLine.text(),
+                         email=self.emailLine.text(), tel=self.phoneLine.text())
+        except Exception as e:
+            print(e)
         self.close()
         self.Open = MessageWin("Запрос на восстановление отправлен.\nЖдите оповещение")
         self.Open.show()
 
     def closeEvent(self, event):
-        write_users_info('Data/UsersInfo/users1.sys', users)
-        write_users_info('Data/UsersInfo/passwordRequests1.sys', recovery_requests)
+        write_users_info('Data/UsersInfo/users.sys', users)
+        write_users_info('Data/UsersInfo/passwordRequests.sys', recovery_requests)
 
 
 class ChangePasswordWin(QtWidgets.QMainWindow,Ui_ChangePasswordWindow):
@@ -142,5 +141,5 @@ class ChangePasswordWin(QtWidgets.QMainWindow,Ui_ChangePasswordWindow):
         except Exception as e:
             self.errorLabel.setText(str(e))
     def closeEvent(self, event):
-        write_users_info('Data/UsersInfo/users1.sys', users)
+        write_users_info('Data/UsersInfo/users.sys', users)
 

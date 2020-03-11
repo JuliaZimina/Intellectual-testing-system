@@ -78,3 +78,9 @@ class UserWin(QtWidgets.QMainWindow, Ui_UserWindow):
         except Exception as e:
             self.errorChangesLabel.setText(str(e))
 
+    def closeEvent(self, event):
+        write_users_info('Data/UsersInfo/users.sys', users)
+        write_users_info('Data/UsersInfo/passwordRequests.sys', recovery_requests)
+        write_group_stat('Data/Ratings/groupStatistics.sys', groupStat)
+        write_grade_stat('Data/Ratings/usersGradeStatistics.sys', gradeStat)
+        write_personal_stat('Data/Ratings/usersPersonalStatistics.sys', userStat)

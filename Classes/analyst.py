@@ -41,4 +41,8 @@ class Analyst(TemplateUser):
 
         # добавить вопрос в tests
     def addQuestion(self, new_group, new_question, answer, incorrectAnswers, time):
-        tests[new_group][new_question] = {'время': time, 'ответ': [answer] + incorrectAnswers}
+        if incorrectAnswers[0]=="":
+            tests[new_group][new_question] = {'время': time, 'ответ': [answer]}
+        else:
+            tests[new_group][new_question] = {'время': time, 'ответ': [answer] + incorrectAnswers}
+

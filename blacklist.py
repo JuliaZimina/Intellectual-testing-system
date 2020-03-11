@@ -14,3 +14,6 @@ gradeStat["user1"].update({"group":"F","Математика":"33"})
 gradeStat["user1"].update({"group":"G","Математика":"33","Физика":"33"})
 gradeStat["user1"].update({"group":"F","Математикfffа":"33"})
 print(gradeStat)
+# столбчатые диаграммы по вопросам
+# sns.catplot(x="количество людей", y="вопрос", data=pd.read_csv('../Data/Ratings/generalStatistics.sys',sep=";"), kind="bar")
+# sns.catplot(x="правильных", y="вопрос", data=pd.read_csv('../Data/Ratings/generalStatistics.sys',sep=";"), kind="bar")
