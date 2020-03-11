@@ -88,7 +88,7 @@ class TemplateUser:
         users[self.login]['father_name'] = new_fname
         self.father_name=new_fname
     def getGroup(self):
-        return self.getGroup()
+        return self.group
     def getLogin(self):
         return self.login
 

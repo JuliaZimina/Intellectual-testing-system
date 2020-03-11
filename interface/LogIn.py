@@ -1,3 +1,4 @@
+import sys
 from Classes.administrator import *
 from Classes.user import User
 from interface.Windows.DialogWindows.changePasswordWindow import *
@@ -63,6 +64,11 @@ class LogInWin(QtWidgets.QMainWindow):
         self.close()
         self.Open = RegistrationWin()
         self.Open.show()
+
+    def closeEvent(self, event):
+        print("exit")
+        #event.accepr()
+        #sys.exit()
 
 class SecretQuestionWin(QtWidgets.QMainWindow,Ui_SecretQuestionWindow):
 

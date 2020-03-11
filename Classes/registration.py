@@ -10,7 +10,7 @@ from Classes.administrator import *
 
 from dataProcessing import users, recovery_requests
 
-# from secretQuestions import secret_questions
+
 EMAIL = "zeiwjfew@yandex.ru"
 PASSWORD = "ooP123"
 
@@ -46,7 +46,7 @@ def send_sms(phones, text, total_price=0):
             return answer
 '''
 
-'''
+
 def sendMessage(text, mail):
     msg = EmailMassage()
     msg['Subject'] = "Подтверждение регистрации"
@@ -57,7 +57,7 @@ def sendMessage(text, mail):
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
         smtp.login(EMAIL, PASSWORD)
         smtp.send_massage(msg)
-'''
+
 
 
 def registration(login, password, name, surname, father_name, date_of_birth, group, secret_question, answer, email, tel,

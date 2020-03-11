@@ -15,18 +15,16 @@ class Test:
         self.general_penalty=False
 
     def updateStatistics(self):
-        print("there stat")
 
-        groupStat[self.user.getGroup()][self.field] = groupStat[self.user.group].get(self.field, [0, 0])
-
-        #groupStat[self.user.getGroup()][self.field][0] += len(self.ex_quest)
-
-        #groupStat[self.user.getGroup()][self.field][1] += self.answers.count(1)
+        groupStat[self.user.getGroup()][self.field] = groupStat[self.user.getGroup()].get(self.field, ["0", "0"])
+        groupStat[self.user.getGroup()][self.field][0] = str(int(groupStat[self.user.getGroup()][self.field][0])+len(self.ex_quest))
+        groupStat[self.user.getGroup()][self.field][1] = str(int(groupStat[self.user.getGroup()][self.field][1])+self.answers.count(1))
         if self.user.getLogin() not in userStat.keys():
             userStat[self.user.getLogin()] = []
-        userStat[self.user.getLogin()].append([self.field, self.getMark()])
-        # логин;группа;математика;английский;физика
-        #gradeStat[self.user.getLogin()] = {"group": self.user.getGroup, self.field: self.getMark()}
+        userStat[self.user.getLogin()].append([self.field, str(self.getMark())])
+        if self.user.getLogin() not in gradeStat.keys():
+            gradeStat[self.user.getLogin()] = {}
+        gradeStat[self.user.getLogin()].update({"group": self.user.getGroup(), self.field: str(self.getMark())})
 
         print(groupStat)
         print(userStat)
