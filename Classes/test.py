@@ -104,7 +104,7 @@ class Test:
             return 5
         elif 70 <= a < 85:
             return 4
-        elif 45 <= a <70:
+        elif 45 <= a < 70:
             return 3
         else: return 2
 
