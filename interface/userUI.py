@@ -13,7 +13,6 @@ class UserWin(QtWidgets.QMainWindow, Ui_UserWindow):
 
     def __init__(self, current_user, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
-        print("use win")
         self.user = current_user
         self.setupUi(self)
         self.testing()
@@ -31,11 +30,11 @@ class UserWin(QtWidgets.QMainWindow, Ui_UserWindow):
             self.genetalTestButton.clicked.connect(self.openGeneralQuestionWindow)
 
     def openThemeQuestionWindow(self):
-        self.Open = QuestionWin(str(self.questionThemeComboBox.currentText()))
+        self.Open = QuestionWin(str(self.questionThemeComboBox.currentText()),self.user)
         self.Open.show()
 
     def openGeneralQuestionWindow(self):
-        self.Open = QuestionWin("general")
+        self.Open = QuestionWin("general",self.user)
         self.Open.show()
 
 

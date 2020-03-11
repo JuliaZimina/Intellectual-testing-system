@@ -10,7 +10,7 @@ from Classes.administrator import *
 
 from dataProcessing import users, recovery_requests
 
-# from secretQuestions import secret_questions
+
 EMAIL = "zeiwjfew@yandex.ru"
 PASSWORD = "ooP123"
 
@@ -46,7 +46,7 @@ def send_sms(phones, text, total_price=0):
             return answer
 '''
 
-'''
+
 def sendMessage(text, mail):
     msg = EmailMassage()
     msg['Subject'] = "Подтверждение регистрации"
@@ -57,7 +57,7 @@ def sendMessage(text, mail):
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
         smtp.login(EMAIL, PASSWORD)
         smtp.send_massage(msg)
-'''
+
 
 
 def registration(login, password, name, surname, father_name, date_of_birth, group, secret_question, answer, email, tel,
@@ -102,11 +102,12 @@ def registration(login, password, name, surname, father_name, date_of_birth, gro
 def recoveryRequest(login, password, name, surname, father_name, date_of_birth, group, secret_question, answer, email,
                     tel,
                     photo=""):
-    recovery_requests[login] = {'password': password, 'status': 'regular_user', 'ban': 'False', 'name': name,
+    recovery_requests[login] = {'password': password, 'status': 'user', 'ban': 'True', 'name': name,
                                 'date_of_birth': date_of_birth, 'tel': tel,
                                 'father_name': father_name, 'surname': surname, 'group': group,
                                 'secret_question': secret_question,
                                 'secret_answer': answer, 'email': email, 'photo': photo}
+    users["ban"]="True"
 
     # sendMessage('ваш запрос на восстановление оптравлен', email)
 

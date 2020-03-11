@@ -1,4 +1,5 @@
 from interface.LogIn import *
+from interface.MessageUI import *
 from interface.Windows.registrationWindow import *
 from Classes.registration import *
 
@@ -26,8 +27,8 @@ class RegistrationWin(QtWidgets.QMainWindow, Ui_RegistrationWindow):
                          secret_question=self.question.currentText(), answer=self.answerLine.text(),
                          email=self.emailLine.text(), tel=self.phoneLine.text())
             self.close()
-            Open = LogInWin()
-            Open.show()
+            self.Open = MessageWin("Вы успешно зарегистрировались")
+            self.Open.show()
 
         except Exception as e:
             self.errorLabel.setText(str(e))

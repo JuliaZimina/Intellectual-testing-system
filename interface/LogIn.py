@@ -1,3 +1,4 @@
+import sys
 from Classes.administrator import *
 from Classes.user import User
 from interface.Windows.DialogWindows.changePasswordWindow import *
@@ -64,6 +65,9 @@ class LogInWin(QtWidgets.QMainWindow):
         self.Open = RegistrationWin()
         self.Open.show()
 
+    def closeEvent(self, event):
+        write_users_info('Data/UsersInfo/users1.sys', users)
+
 class SecretQuestionWin(QtWidgets.QMainWindow,Ui_SecretQuestionWindow):
 
 
@@ -92,6 +96,9 @@ class SecretQuestionWin(QtWidgets.QMainWindow,Ui_SecretQuestionWindow):
         self.close()
         self.Open = ChangePasswordWin(self.user)
         self.Open.show()
+    def closeEvent(self, event):
+        write_users_info('Data/UsersInfo/users1.sys', users)
+        write_users_info('Data/UsersInfo/passwordRequests1.sys', recovery_requests)
 
 
 
@@ -100,7 +107,7 @@ class RecoveryRequestWin(QtWidgets.QMainWindow,Ui_RecoveryRequest):
         QtWidgets.QWidget.__init__(self, parent)
         self.setupUi(self)
         self.user=user
-        self.registerButton.clicked.connect(self.sendRecovery())
+        self.registerButton.clicked.connect(self.sendRecovery)
 
     def sendRecovery(self):
         recoveryRequest(login=self.user.getLogin(), password=self.passwordLine.text(), name=self.nameLine.text(),
@@ -109,6 +116,13 @@ class RecoveryRequestWin(QtWidgets.QMainWindow,Ui_RecoveryRequest):
                      secret_question=self.question.currentText(), answer=self.answerLine.text(),
                      email=self.emailLine.text(), tel=self.phoneLine.text())
         self.close()
+        self.close()
+        self.Open = MessageWin("Запрос на восстановление отправлен.\nЖдите оповещение")
+        self.Open.show()
+
+    def closeEvent(self, event):
+        write_users_info('Data/UsersInfo/users1.sys', users)
+        write_users_info('Data/UsersInfo/passwordRequests1.sys', recovery_requests)
 
 
 class ChangePasswordWin(QtWidgets.QMainWindow,Ui_ChangePasswordWindow):
@@ -127,3 +141,6 @@ class ChangePasswordWin(QtWidgets.QMainWindow,Ui_ChangePasswordWindow):
             self.Open.show()
         except Exception as e:
             self.errorLabel.setText(str(e))
+    def closeEvent(self, event):
+        write_users_info('Data/UsersInfo/users1.sys', users)
+

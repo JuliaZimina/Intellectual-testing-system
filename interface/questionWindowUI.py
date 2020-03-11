@@ -11,15 +11,15 @@ import time
 
 class QuestionWin(QtWidgets.QMainWindow, Ui_questionWindow):
 
-    def __init__(self, theme, parent=None):
+    def __init__(self, theme,user, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
         self.setupUi(self)
         self.theme = theme
         self.answers = ""
-        self.current_test=Test(self.theme)
+        self.current_test=Test(self.theme,user)
         self.start_time=datetime.now()
         self.answerButton.clicked.connect(self.sendAnswer)
-        self.setFixedSize(500, 500)
+        self.setFixedSize(1200, 500)
         try:
             self.test()
         except Exception as e:
@@ -42,8 +42,6 @@ class QuestionWin(QtWidgets.QMainWindow, Ui_questionWindow):
         if len(self.answers) > 1:
             for i in range(len(self.answers)):
                 answers_string = answers_string + str(i + 1) + "." + self.answers[i] + "\n"
-        else:
-            answers_string = self.answers[0]
         question = a[0] + "\n" + answers_string
         return question
 
@@ -55,7 +53,10 @@ class QuestionWin(QtWidgets.QMainWindow, Ui_questionWindow):
                 answer = int(answer)
                 if answer > 0 and answer <= len(self.answers):
                     answer = self.answers[answer - 1]
-        self.current_test.sendAnswer(str(answer), (end_time-self.start_time).total_seconds())
+        try:
+            self.current_test.sendAnswer(str(answer), (end_time-self.start_time).total_seconds())
+        except Exception as e:
+            print(e)
         if self.current_test.endTest():
             self.close()
             self.Open = ResultWin(self.current_test)
@@ -71,4 +72,7 @@ class ResultWin(QtWidgets.QMainWindow, Ui_ResultWindow):
         QtWidgets.QWidget.__init__(self, parent)
         self.setupUi(self)
         self.test = test
-        self.resultLabel.setText(test.getResult())
+        try:
+            self.resultLabel.setText(test.getResult())
+        except Exception as e:
+            print(e)
