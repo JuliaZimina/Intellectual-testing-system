@@ -3,7 +3,8 @@ from dataProcessing import *
 class Test:
     """Test model"""
 
-    def __init__(self, field):
+    def __init__(self, field,user):
+        self.user=user
         self.field = field
         self.ex_quest = []
         self.number_of_quest = 5
@@ -13,9 +14,27 @@ class Test:
         self.answers = []
         self.general_penalty=False
 
+    def updateStatistics(self):
+        print("there stat")
+
+        groupStat[self.user.getGroup()][self.field] = groupStat[self.user.group].get(self.field, [0, 0])
+
+        #groupStat[self.user.getGroup()][self.field][0] += len(self.ex_quest)
+
+        #groupStat[self.user.getGroup()][self.field][1] += self.answers.count(1)
+        if self.user.getLogin() not in userStat.keys():
+            userStat[self.user.getLogin()] = []
+        userStat[self.user.getLogin()].append([self.field, self.getMark()])
+        # логин;группа;математика;английский;физика
+        #gradeStat[self.user.getLogin()] = {"group": self.user.getGroup, self.field: self.getMark()}
+
+        print(groupStat)
+        print(userStat)
+        print(gradeStat)
+
 # генерирует следующий вопрос
     def getNextQuestion(self):
-        if self.general_penalty and self.array_themes.count(self.array_themes[-1]) < 4:
+        if self.general_penalty and self.array_themes.count(self.array_themes[-1]) < 3:
             key=self.array_themes[-1]
             for j in tests[key]:
                 if [j, tests[key][j]] in self.ex_quest:
@@ -53,7 +72,7 @@ class Test:
             self.answers.append(0)
         else:
             self.answers.append(1)
-        if (time > int(d['время']) or time <= 5 or answer != d['ответ'][0]) and self.number_of_quest < 10:
+        if (time > int(d['время']) or time <= 1 or answer != d['ответ'][0]) and self.number_of_quest < 5:
             self.number_of_quest += 1
             if self.field=="general":
                 self.general_penalty=True
@@ -61,6 +80,9 @@ class Test:
 
 
     def getResult(self):
+        if users[self.user.getLogin()]['status']=="user":
+            self.updateStatistics()
+
         st = ''
         for i in range(len(self.ex_quest)):
              if self.answers[i] == 0:
@@ -86,13 +108,10 @@ class Test:
             return 3
         else: return 2
 
-test1=Test("История")
-print(test1.getNextQuestion())
-print(test1.getNextQuestion())
-print(test1.getNextQuestion())
-test1.sendAnswer("ggg",30)
+#test1=Test("История")
+
 #print(test1.getResult())
-test2=Test("general")
+#test2=Test("general")
 print("start")
 #print(test2.getNextQuestion())
 #print(test2.getNextQuestion())

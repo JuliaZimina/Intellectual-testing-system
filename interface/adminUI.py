@@ -77,11 +77,11 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
         self.genetalTestButton.clicked.connect(self.openGeneralQuestionWindow)
 
     def openThemeQuestionWindow(self):
-        self.Open = QuestionWin(str(self.questionThemeComboBox.currentText()))
+        self.Open = QuestionWin(str(self.questionThemeComboBox.currentText()),self.user)
         self.Open.show()
 
     def openGeneralQuestionWindow(self):
-        self.Open = QuestionWin("general")
+        self.Open = QuestionWin("general",self.user)
         self.Open.show()
 
     def openStatusWindow(self):

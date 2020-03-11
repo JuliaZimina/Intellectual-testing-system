@@ -100,7 +100,7 @@ class RecoveryRequestWin(QtWidgets.QMainWindow,Ui_RecoveryRequest):
         QtWidgets.QWidget.__init__(self, parent)
         self.setupUi(self)
         self.user=user
-        self.registerButton.clicked.connect(self.sendRecovery())
+        self.registerButton.clicked.connect(self.sendRecovery)
 
     def sendRecovery(self):
         recoveryRequest(login=self.user.getLogin(), password=self.passwordLine.text(), name=self.nameLine.text(),
@@ -109,6 +109,9 @@ class RecoveryRequestWin(QtWidgets.QMainWindow,Ui_RecoveryRequest):
                      secret_question=self.question.currentText(), answer=self.answerLine.text(),
                      email=self.emailLine.text(), tel=self.phoneLine.text())
         self.close()
+        self.close()
+        self.Open = MessageWin("Запрос на восстановление отправлен.\nЖдите оповещение")
+        self.Open.show()
 
 
 class ChangePasswordWin(QtWidgets.QMainWindow,Ui_ChangePasswordWindow):

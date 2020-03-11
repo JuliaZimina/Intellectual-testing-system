@@ -149,4 +149,16 @@ userStat = read_users_statistics('Data/Ratings/usersPersonalStatistics.sys')
 print(userStat)
 print(groups_of_questions)
 secret_questions = ["f", "g"]
+gradeStat={"18БИ1":{},"18БИ2":{}}
+
+groupStat["18БИ1"]["Историяя"]=groupStat["18БИ1"].get("История", [0,0])
+groupStat["18БИ1"]["Историяя"][0]=str(int(groupStat["18БИ1"]["Историяя"][0])+5)
+print("There",groupStat)
+
+#if self.user.getLogin() not in userStat.keys():
+    #userStat[self.user.getLogin()]=[]
+#userStat[self.user.getLogin()].append[self.theme,result]
+
+#логин;группа;математика;английский;физика
 gradeStat={}
+#gradeStat[self.user.getLogin()]={"group":self.user.getGroup,self.theme:result}

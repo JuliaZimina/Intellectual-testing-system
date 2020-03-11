@@ -4,6 +4,7 @@ from interface.Windows.analystWindow import *
 
 from interface.Windows.editQuestionWindow import *
 from interface.questionWindowUI import QuestionWin
+from dataProcessing import *
 
 
 class AnalystWin(Ui_AnalystWindow, QtWidgets.QMainWindow):
@@ -58,11 +59,11 @@ class AnalystWin(Ui_AnalystWindow, QtWidgets.QMainWindow):
         self.genetalTestButton.clicked.connect(self.openGeneralQuestionWindow)
 
     def openThemeQuestionWindow(self):
-        self.Open = QuestionWin(str(self.questionThemeComboBox.currentText()))
+        self.Open = QuestionWin(str(self.questionThemeComboBox.currentText()),self.user)
         self.Open.show()
 
     def openGeneralQuestionWindow(self):
-        self.Open = QuestionWin("general")
+        self.Open = QuestionWin("general",self.user)
         self.Open.show()
 
     def questionManager(self):

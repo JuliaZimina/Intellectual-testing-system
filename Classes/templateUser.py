@@ -49,6 +49,7 @@ class TemplateUser:
 
 
 
+
     def setGroup(self, new_group):
         users[self.login]['group'] = new_group
         self.group=new_group
@@ -86,6 +87,8 @@ class TemplateUser:
     def setFatherName(self, new_fname):
         users[self.login]['father_name'] = new_fname
         self.father_name=new_fname
+    def getGroup(self):
+        return self.getGroup()
     def getLogin(self):
         return self.login
 
