@@ -1,4 +1,3 @@
-from Classes.registration import *
 
 #login;password;status;ban;name,surname;father_name;date_of_birth;group;secret_question;secret_answer;email;tel
 class TemplateUser:
@@ -117,3 +116,16 @@ class TemplateUser:
 
     def deleteUser(self):
         del users[self.login]
+def checkLogin(login):
+    if login in users:
+        return False
+    return True
+
+def checkPassword(password):
+    if len(password) < 8:
+        return False
+    return True
+def checkNames(name):
+    if name == '':
+        return False
+    return True

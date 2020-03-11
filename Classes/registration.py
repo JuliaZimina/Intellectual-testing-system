@@ -3,6 +3,7 @@
 # import time
 # from email.massage import EmailMassage
 import smtplib
+from Classes.templateUser import *
 from Classes.user import *
 from Classes.analyst import *
 from Classes.administrator import *
@@ -46,16 +47,7 @@ def send_sms(phones, text, total_price=0):
 '''
 
 
-def checkLogin(login):
-    if login in users:
-        return False
-    return True
 
-
-def checkPassword(password):
-    if password < 8:
-        return False
-    return True
 
 
 '''
@@ -72,10 +64,7 @@ def sendMessage(text, mail):
 '''
 
 
-def checkNames(name):
-    if name == '':
-        return False
-    return True
+
 
 
 def registration(login, password, name, surname, father_name, date_of_birth, group, secret_question, answer, email, tel,
@@ -159,7 +148,7 @@ def logIn(login, password):  # вход
                     users[login]['father_name'], users[login]['date_of_birth'], users[login]['group'],
                     users[login]['secret_question'],
                     users[login]['secret_answer'], users[login]['email'], users[login]['tel'])
-    elif users[login]['status'] == 'admin':
+    elif users[login]['status'] == 'analyst':
         return Analyst(login, password, users[login]['name'], users[login]['surname'],
                        users[login]['father_name'], users[login]['date_of_birth'], users[login]['group'],
                        users[login]['secret_question'],
@@ -174,7 +163,18 @@ def logIn(login, password):  # вход
 # временный вход, это не для смены пароля, это функция которая создает объект юзера по логину, т.е. принимать должна
 # только логин
 def tmpLogIn(login):  # временный вход
-    return User(login, users[login]['password'], users[login]['name'], users[login]['surname'],
-                users[login]['father_name'], users[login]['date_of_birth'], users[login]['group'],
-                users[login]['secret_question'],
-                users[login]['secret_answer'], users[login]['email'], users[login]['tel'])
+    if users[login]['status'] == 'user':
+        return User(login, users[login]['password'], users[login]['name'], users[login]['surname'],
+                    users[login]['father_name'], users[login]['date_of_birth'], users[login]['group'],
+                    users[login]['secret_question'],
+                    users[login]['secret_answer'], users[login]['email'], users[login]['tel'])
+    elif users[login]['status'] == 'analyst':
+        return Analyst(login, users[login]['password'], users[login]['name'], users[login]['surname'],
+                       users[login]['father_name'], users[login]['date_of_birth'], users[login]['group'],
+                       users[login]['secret_question'],
+                       users[login]['secret_answer'], users[login]['email'], users[login]['tel'])
+    else:
+        return Administrator(login, users[login]['password'], users[login]['name'], users[login]['surname'],
+                             users[login]['father_name'], users[login]['date_of_birth'], users[login]['group'],
+                             users[login]['secret_question'],
+                             users[login]['secret_answer'], users[login]['email'], users[login]['tel'])
