@@ -9,7 +9,7 @@ sns.catplot(x="группа вопросов", y="количество отве�
 sns.catplot(x="группа вопросов", y="количество правильных", data=pd.read_csv('../Data/Ratings/groupStatistics.sys',sep=";"), height=6, kind="bar",  hue = 'группа людей')
 
 #столбчатые диаграммы по вопросам
-sns.catplot(x="количество ответивших", y="вопрос", data=pd.read_csv('../Data/Ratings/generalStatistics.sys',sep=";"), kind="bar")
+sns.catplot(x="количество людей", y="вопрос", data=pd.read_csv('../Data/Ratings/generalStatistics.sys',sep=";"), kind="bar")
 sns.catplot(x="правильных", y="вопрос", data=pd.read_csv('../Data/Ratings/generalStatistics.sys',sep=";"), kind="bar")
 
 
