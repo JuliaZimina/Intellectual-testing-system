@@ -16,6 +16,10 @@ class QuestionWin(QtWidgets.QMainWindow, Ui_questionWindow):
         self.setupUi(self)
         self.theme = theme
         self.answers = ""
+        self.current_test=Test(self.theme)
+        self.start_time=datetime.now()
+        self.answerButton.clicked.connect(self.sendAnswer)
+        self.setFixedSize(500, 500)
         try:
             self.test()
         except Exception as e:
@@ -23,17 +27,14 @@ class QuestionWin(QtWidgets.QMainWindow, Ui_questionWindow):
         #self.answerButton.clicked.connect(self.test)
 
     def test(self):
-        current_test = Test(self.theme)
-        while not current_test.endTest():
-            start_time = datetime.now()
-            self.questionLabel.setText(self.getNextQuestion(current_test))
-            self.answerButton.clicked.connect(self.sendAnswer(current_test, start_time))
-        self.close()
-        self.Open = ResultWin(current_test)
-        self.Open.show()
+        #while not self.current_test.endTest():
+        self.start_time = datetime.now()
+        self.questionLabel.setText(self.getNextQuestion())
+        #self.answerButton.clicked.connect(self.sendAnswer)
 
-    def getNextQuestion(self, test):
-        a = test.getNextQuestion()
+
+    def getNextQuestion(self):
+        a = self.current_test.getNextQuestion()
         self.answers = [x for x in a[1]["ответ"]]
         import random
         random.shuffle(self.answers)
@@ -46,15 +47,22 @@ class QuestionWin(QtWidgets.QMainWindow, Ui_questionWindow):
         question = a[0] + "\n" + answers_string
         return question
 
-    def sendAnswer(self, test, start_time):
+    def sendAnswer(self):
         end_time = datetime.now()
         answer = self.answerlineEdit.text()
         if len(self.answers) > 1:
             if answer.isdigit():
                 answer = int(answer)
-                if answer > 0 and answer <= len(answer):
+                if answer > 0 and answer <= len(self.answers):
                     answer = self.answers[answer - 1]
-        test.sendAnswer(answer, start_time - end_time)
+        self.current_test.sendAnswer(str(answer), (end_time-self.start_time).total_seconds())
+        if self.current_test.endTest():
+            self.close()
+            self.Open = ResultWin(self.current_test)
+            self.Open.show()
+        else:
+            self.test()
+
 
 
 class ResultWin(QtWidgets.QMainWindow, Ui_ResultWindow):
