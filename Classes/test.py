@@ -36,10 +36,7 @@ class Test:
 
 # пользователь отправляет свой ответ
     def sendAnswer(self, answer, time):
-        print("h")
         d = self.ex_quest[-1][1]
-        print("hi")
-        print(d)
         if answer != d['ответ'][0]:
             self.answers.append(0)
         if (time > int(d['время']) or time <= 5 or answer != d['ответ'][0]) and self.number_of_quest < 10:
