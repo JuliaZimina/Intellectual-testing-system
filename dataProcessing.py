@@ -183,10 +183,25 @@ def write_group_stat(file,data):
                 full_string+=string+theme+";"+data[group][theme][0]+";"+data[group][theme][1]+"\n"
                 f.write(full_string)
 def write_tests(file,data):
-    
-
-
-
+    with open(file, 'w', encoding='utf-8') as f:
+        for group in data.keys():
+            for q in data[group].keys():
+                string=group+";"+q+";"+data[group][q]["время"]+";"+";".join(data[group][q]["ответ"])+"\n"
+                f.write(string)
+def write_grade_stat(file,data):
+    with open(file, 'w', encoding='utf-8') as f:
+        for user in data.keys():
+            string=user+";"+data[user]["group"]+";"
+            if user=="логин":
+                string+=";".join(groups_of_questions)+"\n"
+                f.write(string)
+                continue
+            for theme in groups_of_questions:
+                if theme in data[user].keys():
+                    string+=data[user][theme]+";"
+                else:
+                    string += "не проходил"+";"
+            f.write(string+"\n")
 
 
 users = read_users_info('Data/UsersInfo/users.sys')
@@ -205,5 +220,6 @@ secret_questions = read_secret_questions('Data/Content/secretQuestions.sys')
 print(secret_questions)
 gradeStat=read_grade_statistic('Data/Ratings/usersGradeStatistics.sys')
 print(gradeStat)
-write_users_info('Data/UsersInfo/users1.sys',users)
-write_group_stat('Data/Ratings/groupStatistics1.sys',groupStat)
+
+
+

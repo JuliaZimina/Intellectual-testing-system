@@ -66,9 +66,7 @@ class LogInWin(QtWidgets.QMainWindow):
         self.Open.show()
 
     def closeEvent(self, event):
-        print("exit")
-        #event.accepr()
-        #sys.exit()
+        write_users_info('Data/UsersInfo/users1.sys', users)
 
 class SecretQuestionWin(QtWidgets.QMainWindow,Ui_SecretQuestionWindow):
 
@@ -98,6 +96,9 @@ class SecretQuestionWin(QtWidgets.QMainWindow,Ui_SecretQuestionWindow):
         self.close()
         self.Open = ChangePasswordWin(self.user)
         self.Open.show()
+    def closeEvent(self, event):
+        write_users_info('Data/UsersInfo/users1.sys', users)
+        write_users_info('Data/UsersInfo/passwordRequests1.sys', recovery_requests)
 
 
 
@@ -119,6 +120,10 @@ class RecoveryRequestWin(QtWidgets.QMainWindow,Ui_RecoveryRequest):
         self.Open = MessageWin("Запрос на восстановление отправлен.\nЖдите оповещение")
         self.Open.show()
 
+    def closeEvent(self, event):
+        write_users_info('Data/UsersInfo/users1.sys', users)
+        write_users_info('Data/UsersInfo/passwordRequests1.sys', recovery_requests)
+
 
 class ChangePasswordWin(QtWidgets.QMainWindow,Ui_ChangePasswordWindow):
 
@@ -136,3 +141,6 @@ class ChangePasswordWin(QtWidgets.QMainWindow,Ui_ChangePasswordWindow):
             self.Open.show()
         except Exception as e:
             self.errorLabel.setText(str(e))
+    def closeEvent(self, event):
+        write_users_info('Data/UsersInfo/users1.sys', users)
+

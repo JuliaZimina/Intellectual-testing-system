@@ -23,4 +23,5 @@ class Administrator(Analyst):
 
     def return_access(self,login):
         users[login]['ban'] = "False"
+        del recovery_requests[login]
         #отправить сообщение

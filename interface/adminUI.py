@@ -117,22 +117,14 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
         self.hideGroupOfQuestionsButton.clicked.connect(self.hideGroupOfQuestions)
         self.editQuestionButton.clicked.connect(self.openEditQuestionWindow)
         self.AddQuestionButton.clicked.connect(self.openAddQuestionWindow)
-    def reload(self):
-        self.Open = AdminWin(self.user)
-        self.close()
-        self.Open.show()
     def deleteQuestion(self):
         self.user.deleteQuestion(self.groupsOfQuestionsBox.currentText(), self.questionsComboBox.currentText())
-        self.reload()
     def deleteGroupOfQuestions(self):
         self.user.deleteGroup(self.groupsOfQuestionsBox.currentText())
-        self.reload()
     def hideQuestion(self):
         self.user.hideQuestion(self.groupsOfQuestionsBox.currentText(), self.questionsComboBox.currentText())
-        self.reload()
     def hideGroupOfQuestions(self):
         self.user.hideGroup(self.groupsOfQuestionsBox.currentText())
-        self.reload()
 
 
     def changeQuestions(self):
@@ -150,6 +142,13 @@ class AdminWin(Ui_AdminWindow, QtWidgets.QMainWindow):
 
     def openGraphicsWindow(self):
         pass
+    def closeEvent(self, event):
+        write_users_info('Data/UsersInfo/users1.sys', users)
+        write_users_info('Data/UsersInfo/passwordRequests1.sys', recovery_requests)
+        write_group_stat('Data/Ratings/groupStatistics1.sys', groupStat)
+        write_tests('Data/Content/tests1.sys', tests)
+        write_grade_stat('Data/Ratings/usersGradeStatistics1.sys', gradeStat)
+
 
 
 class BanWin(Ui_BanWindow, QtWidgets.QMainWindow):
@@ -161,11 +160,6 @@ class BanWin(Ui_BanWindow, QtWidgets.QMainWindow):
         self.banButton.clicked.connect(self.ban)
     def ban(self):
         self.admin.block_user(str(self.loginBox.currentText()), str(self.reasonLine.text()))
-        self.reload()
-    def reload(self):
-        self.Open = AdminWin(self.admin)
-        self.close()
-        self.Open.show()
 
 
 class RoleWin(Ui_updateRoleWindow, QtWidgets.QMainWindow):
@@ -178,11 +172,7 @@ class RoleWin(Ui_updateRoleWindow, QtWidgets.QMainWindow):
     def changeStatus(self):
         self.admin.roles(str(self.loginBox.currentText()),
                         str(self.statusBox.currentText()))
-        self.reload()
-    def reload(self):
-        self.Open = AdminWin(self.admin)
-        self.close()
-        self.Open.show()
+
 
 
 
@@ -195,12 +185,11 @@ class UserRecoveryWin(Ui_UnblockUserWindow, QtWidgets.QMainWindow):
         self.loginBox.addItems(list(recovery_requests.keys()))
         self.changeStatusButton.clicked.connect(self.returnAccess)
     def returnAccess(self):
-        self.admin.return_access(str(self.loginBox.currentText()))
-        self.reload()
-    def reload(self):
-        self.Open = AdminWin(self.admin)
-        self.close()
-        self.Open.show()
+        try:
+            self.admin.return_access(str(self.loginBox.currentText()))
+        except Exception as e:
+            print(e)
+
 
 
 

@@ -8,7 +8,7 @@ class Analyst(TemplateUser):
         super().__init__(login, password, name, surname, father_name, date_of_birth, group, secret_question,
                          secret_answer, email, tel)
     def getStatistics(self):
-        return str(userStat)
+        return printUserInfo(userStat)
 
         # первый аргумент во всех методах класса всегда self
         # удаляет вопрос из test+удаляет его из всей статистики
