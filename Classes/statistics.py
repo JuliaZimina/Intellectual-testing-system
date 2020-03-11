@@ -8,6 +8,11 @@ import numpy as np
 sns.catplot(x="группа вопросов", y="количество отвечавших", data=pd.read_csv('../Data/Ratings/groupStatistics.sys',sep=";"), height=6, kind="bar",  hue = 'группа людей')
 sns.catplot(x="группа вопросов", y="количество правильных", data=pd.read_csv('../Data/Ratings/groupStatistics.sys',sep=";"), height=6, kind="bar",  hue = 'группа людей')
 
+#столбчатые диаграммы по вопросам
+sns.catplot(x="количество людей", y="вопрос", data=pd.read_csv('../Data/Ratings/generalStatistics.sys',sep=";"), kind="bar")
+sns.catplot(x="правильных", y="вопрос", data=pd.read_csv('../Data/Ratings/generalStatistics.sys',sep=";"), kind="bar")
+
+
 #круговые диаграммы с оценками по группам вопросов (отдельно для каждой группы, здесь только математика)
 df_users = pd.read_csv('../Data/Ratings/usersGradeStatistics.sys',sep=";")
 
