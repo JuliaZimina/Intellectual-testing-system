@@ -51,7 +51,7 @@ class Test:
              else:
                  st = st + "Вопрос " + str(i) + " отвечен правильно\n"
         st = st + "Количество правильных ответов: " + str(self.answers.count(1)) + " из " + str(len(self.answers)) + "\n" \
-             + str(int(self.answers.count(1) / len(self.answers * 100))) + " процентов отвечено верно"
+             + str(int(self.answers.count(1) / len(self.answers) * 100)) + " процентов отвечено верно"
         return st
 
 
@@ -59,6 +59,15 @@ class Test:
         if self.number_of_quest == len(self.ex_quest):
             return True
 
+    def getMark(self):
+        a = int(self.answers.count(1) / len(self.answers) * 100)
+        if a >= 85:
+            return 5
+        elif 70 <= a < 85:
+            return 4
+        elif 45 <= a <70:
+            return 3
+        else: return 2
 
 test1=Test("История")
 print(test1.getNextQuestion())
