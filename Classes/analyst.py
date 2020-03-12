@@ -10,27 +10,26 @@ class Analyst(TemplateUser):
     def getStatistics(self):
         return printUserInfo(userStat)
 
-        # первый аргумент во всех методах класса всегда self
-        # удаляет вопрос из test+удаляет его из всей статистики
+
     def deleteQuestion(self, group, question):
         self.hideQuestion(group,question)
         #del genStat[group][question]
 
-    # удаляет только из списка вопросов
+
     def hideQuestion(self, group, question):
         del tests[group][question]
 
     def hideGroup(self, group):
         del tests[group]
 
-    # аналогично  с удалением вопроса
+
     def deleteGroup(self, group):
         self.hideGroup(group)
         #del genStat[group]
 
 
 
-    # этот метод еще и в статистике должен менять вопрос
+
     def editQuestion(self, old_group, old_question, new_group, new_question, answer, incorrectAnswers, time):
         #stats = genStat[old_group][old_question]
         self.deleteQuestion(old_group,old_question)
@@ -39,7 +38,7 @@ class Analyst(TemplateUser):
         print(tests[new_group])
 
 
-        # добавить вопрос в tests
+
     def addQuestion(self, new_group, new_question, answer, incorrectAnswers, time):
         if incorrectAnswers[0]=="":
             tests[new_group][new_question] = {'время': time, 'ответ': [answer]}

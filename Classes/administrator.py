@@ -11,13 +11,11 @@ class Administrator(Analyst):
 
 
 
-#функции с вопросами переехали в аналитика
-    # добавила поле с причиной, user-это будет не объект, а логин этого юзера
+
     def block_user(self, login, reason):
         users[login]["ban"] = "True"
         # отправить сообщение
 
-    # user-login,new_role="user"/"analyst"
     def roles(self,login, new_role):
         users[login]["status"]=new_role
 
